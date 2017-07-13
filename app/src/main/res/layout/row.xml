@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -30,32 +31,32 @@
                     android:id="@+id/button1"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@mipmap/person_icon"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:background="@mipmap/person_icon" />
 
                 <Button
+                    android:id="@+id/button2"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@mipmap/shoppingcart_icon"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:id="@+id/button2"
-                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/button1"
                     android:layout_toRightOf="@+id/button1"
-                    android:layout_toEndOf="@+id/button1" />
+                    android:background="@mipmap/shoppingcart_icon" />
 
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:background="@mipmap/clear_icon"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/button2"
                     android:layout_toRightOf="@+id/button2"
-                    android:layout_toEndOf="@+id/button2" />
+                    android:background="@mipmap/clear_icon" />
 
             </RelativeLayout>
 
@@ -69,22 +70,94 @@
                     style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:scaleX="1.8"
                     android:scaleY="1.8"
                     android:stepSize="0.5"
                     android:transformPivotX="0dp"
-                    android:transformPivotY="0dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:transformPivotY="0dp" />
             </RelativeLayout>
 
 
         </LinearLayout>
 
-        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topLayout">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_weight="5">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/textlines" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_weight="4">
+
+                <Button
+                    android:id="@+id/startButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@mipmap/gettingStart_icon" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/startButton">
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@mipmap/tmp_icon" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toEndOf="@+id/button4"
+                        android:layout_toRightOf="@+id/button4"
+                        android:id="@+id/textView2" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/tmp_icon"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/textView2"
+                        android:layout_toEndOf="@+id/textView2" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/textView3"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toRightOf="@+id/button5"
+                        android:layout_toEndOf="@+id/button5" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 
