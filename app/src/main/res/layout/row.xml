@@ -75,8 +75,8 @@
                     android:layout_centerVertical="true"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:scaleX="1.8"
-                    android:scaleY="1.8"
+                    android:scaleX="1.7"
+                    android:scaleY="1.7"
                     android:stepSize="0.5"
                     android:transformPivotX="0dp"
                     android:transformPivotY="0dp" />
@@ -93,14 +93,43 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="160dp"
-                android:layout_weight="5">
+                android:layout_weight="5"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/textlines"
+                    android:layout_marginTop="2dp">
+
+                    <TextView
+                        android:id="@+id/recyclerView_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:layout_marginRight="20dp" />
+
+                </LinearLayout>
+                
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/recyclerView_category"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/textlines" />
+                    android:layout_height="0dp"
+                    android:id="@+id/recyclerView_id"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/recyclerView_cost"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/recyclerView_reward"/>
             </LinearLayout>
 
 
@@ -113,7 +142,7 @@
                     android:id="@+id/startButton"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@mipmap/gettingStart_icon" />
+                    android:background="@mipmap/ic_launcher" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
