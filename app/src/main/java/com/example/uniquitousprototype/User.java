@@ -13,11 +13,20 @@ public class User {
     private String userName;
     @SerializedName("bills")
     private List<String> tasks;
+    @SerializedName("password")
     private String password;
+    @SerializedName("passwordConfirm")
+    private String passwordConfirm;
+    private String name;
+    @SerializedName("email")
+    private String email;
 
-    User (String userName, String password) {
+    User (String userName, String password, String passwordConfirm, String name, String email) {
         this.userName = userName;
         this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.name = name;
+        this.email = email;
     }
 
     public String getUserName() {

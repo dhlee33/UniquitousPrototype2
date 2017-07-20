@@ -8,8 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    >
+    android:layout_margin="10dp" >
+
     <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/textlines"
-        >
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
         <EditText
             android:id="@+id/text"
             android:layout_width="match_parent"
@@ -27,9 +28,10 @@
             android:hint="내용을 입력하세요"
             android:gravity="top"
             android:background="@drawable/edit"
-            android:layout_margin="5dp"
-            />
+            android:layout_margin="5dp" />
+
     </LinearLayout>
+
     <TextView
     android:id="@+id/textView8"
     android:layout_width="wrap_content"

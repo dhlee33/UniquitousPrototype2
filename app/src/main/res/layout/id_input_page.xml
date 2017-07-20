@@ -11,11 +11,11 @@
         android:id="@+id/textView"
         android:layout_marginTop="59dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/email_input_edittext"
-        android:layout_alignStart="@+id/email_input_edittext" />
+        android:layout_alignLeft="@+id/id_input_edittext"
+        android:layout_alignStart="@+id/id_input_edittext" />
 
     <EditText
-        android:id="@+id/email_input_edittext"
+        android:id="@+id/id_input_edittext"
         android:layout_width="match_parent"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
@@ -33,7 +33,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp">
         <Button
-            android:id="@+id/accept_email_button"
+            android:id="@+id/accept_id_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -41,6 +41,7 @@
             android:layout_alignParentTop="true"
             android:text="다음"
             android:textSize="30dp"
+            android:onClick="accept_id"
             android:layout_marginTop="10dp" />
     </RelativeLayout>
 
