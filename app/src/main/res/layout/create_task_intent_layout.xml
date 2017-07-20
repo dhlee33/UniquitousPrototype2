@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,11 +30,20 @@
             android:layout_margin="5dp"
             />
     </LinearLayout>
+    <TextView
+    android:id="@+id/textView8"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="카테고리를 선택하세요"
+    android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/textlines">
+
+
 
         <RadioGroup
             android:id="@+id/radioGroup1"
@@ -49,14 +58,6 @@
                 android:checked="true"
                 android:text="DELIVERY"
                 android:layout_weight="1"/>
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="카테고리를 선택하세요"
-                android:textSize="20dp" />
 
             <RadioButton
                 android:id="@+id/radio1"
@@ -81,107 +82,111 @@
 
         </RadioGroup>
     </LinearLayout>
+
     <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/reward_text"
+        android:layout_toEndOf="@+id/reward_text"
+        android:layout_toRightOf="@+id/reward_text"
         android:text="지불할 금액을 입력하세요"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp">
+        android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/cost_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="추가비용"
-            android:id="@+id/textView6"
-            android:layout_marginLeft="69dp"
-            android:layout_marginStart="69dp"
-            android:layout_alignBaseline="@+id/textView7"
-            android:layout_alignBottom="@+id/textView7"
+            android:layout_alignBaseline="@+id/cost_edit_text"
+            android:layout_alignBottom="@+id/cost_edit_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="원"
-            android:layout_marginRight="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
-            android:id="@+id/textView7"
-            android:layout_alignLeft="@+id/textView6"
-            android:layout_alignStart="@+id/textView6" />
-
         <EditText
-            android:id="@+id/cost1"
-            android:layout_width="wrap_content"
+            android:id="@+id/cost_edit_text"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textlines"
             android:gravity="right"
-            android:hint="추가 비용을 입력하세요"
+            android:hint="0"
             android:padding="2dp"
-            android:layout_marginLeft="75dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/textView6"
-            android:layout_toEndOf="@+id/textView6"
-            android:layout_marginStart="75dp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp">
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/wonText10"
+            android:layout_toStartOf="@+id/wonText10"
+            android:layout_marginRight="12dp"/>
+
         <TextView
+            android:id="@+id/wonText10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="원"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+        <EditText
+            android:id="@+id/reward_edit_text"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textlines"
+            android:gravity="right"
+            android:hint="0"
+            android:padding="2dp"
+            android:layout_below="@+id/cost_edit_text"
+            android:layout_alignLeft="@+id/cost_edit_text" />
+
+        <TextView
+            android:id="@+id/reward_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수고비"
-            android:layout_margin="2dp"
-            android:id="@+id/textView5" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/textlines"
-            android:hint="수고비를 입력하세요"
-            android:padding="2dp"
-            android:gravity="right"
-            android:id="@+id/cost2"
-            android:layout_marginLeft="89dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/textView5"
-            android:layout_toEndOf="@+id/textView5"
-            android:layout_marginStart="89dp" />
+            android:layout_below="@+id/cost_edit_text"
+            android:layout_alignLeft="@+id/cost_text"/>"/>
+
         <TextView
+            android:id="@+id/wonText11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="원"
-            android:layout_margin="2dp"/>
+            android:layout_alignBaseline="@+id/cost_edit_text"
+            android:layout_alignBottom="@+id/cost_edit_text"
+            android:layout_toEndOf="@+id/cost_edit_text"
+            android:layout_toRightOf="@+id/cost_edit_text" />
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="2dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="총합"
-            android:layout_margin="2dp"/>
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:padding="2dp"
+            android:text="총합" />
+
+        <TextView
             android:id="@+id/cost3"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:padding="2dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            android:text="원"/>
+            android:text="원" />
     </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -189,4 +194,4 @@
         android:onClick="create"/>
 
 </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>

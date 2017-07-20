@@ -1,6 +1,5 @@
 package com.example.uniquitousprototype;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -36,8 +35,8 @@ public class CreateTaskIntent extends AppCompatActivity{
         apiService = apiApplication.getApiService();
         Bundle extras = getIntent().getExtras();
         contentEditText = (EditText)findViewById(R.id.text);
-        costEditText = (EditText)findViewById(R.id.cost1);
-        rewardEditText = (EditText)findViewById(R.id.cost2);
+        costEditText = (EditText)findViewById(R.id.cost_edit_text);
+        rewardEditText = (EditText)findViewById(R.id.reward_edit_text);
         categoryGroup = (RadioGroup)findViewById(R.id.radioGroup1);
         content = extras.getString("content");
         category = extras.getString("category");
