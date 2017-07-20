@@ -1,8 +1,10 @@
 package com.example.uniquitousprototype;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.hoang8f.android.segmented.SegmentedGroup;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ApiApplication apiApplication;
     private ApiService apiService;
+    private ProgressDialog progressDialog;
+    SegmentedGroup categoryGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +46,20 @@ public class MainActivity extends AppCompatActivity {
 
         apiApplication = (ApiApplication) getApplicationContext();
         apiService = apiApplication.getApiService();
-
         taskList = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-
+        categoryGroup = (SegmentedGroup) findViewById(R.id.segmented2);
+        loading();
         Call<TaskResponse> call = apiService.getTaskList();
         call.enqueue(new Callback<TaskResponse>() {
             @Override
             public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
                 taskList = response.body().getResults();
                 recyclerView.setAdapter(new MyAdapter(taskList));
+                progressDialog.dismiss();
             }
 
             @Override
@@ -76,27 +84,68 @@ public class MainActivity extends AppCompatActivity {
         startActivity(createTaskIntent);
 
     }
+    public void loading()
+    {
+        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("로딩중입니다...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+    public void category_get(View v) {
+        int categoryIndex = categoryGroup.getCheckedRadioButtonId();
+        RadioButton c = (RadioButton)findViewById(categoryIndex);
+        String categ = c.getText().toString();
+        String category = "0";
+        switch (categ){
+            case "전체":
+                Call<TaskResponse> call = apiService.getTaskList();
+                loading();
+                call.enqueue(new Callback<TaskResponse>() {
+                    @Override
+                    public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                        taskList = response.body().getResults();
+                        recyclerView.setAdapter(new MyAdapter(taskList));
+                        progressDialog.dismiss();
+                    }
 
-    public void category_delivery(View v) {
-        Call<TaskResponse> call1 = apiService.getTaskList();
-        final String clickedCategory = ((Button) v).getText().toString();
-        call1.enqueue(new Callback<TaskResponse>() {
-            @Override
-            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
-                List<Task> tmpTaskList = response.body().getResults();
-                taskList.clear();
-                for (Task tmpTask : tmpTaskList) {
-                    if (tmpTask.getCategory().equals(clickedCategory))
-                        taskList.add(tmpTask);
+                    @Override
+                    public void onFailure(Call<TaskResponse> call, Throwable t) {
+
+                    }
+                });
+                break;
+            case "배달":
+                category = "DELIVERY";
+                break;
+            case "숙제":
+                category = "HOMEWORK";
+                break;
+            case "심부름":
+                category = "ERRAND";
+                break;
+            case "기타":
+                category = "ETC";
+                break;
+        }
+        if(category != "0") {
+            loading();
+            Call<TaskResponse> call1 = apiService.categoryGet(category);
+            final String clickedCategory = ((Button) v).getText().toString();
+            call1.enqueue(new Callback<TaskResponse>() {
+                @Override
+                public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                    taskList.clear();
+                    taskList = response.body().getResults();
+                    recyclerView.setAdapter(new MyAdapter(taskList));
+                    progressDialog.dismiss();
                 }
-                recyclerView.setAdapter(new MyAdapter(taskList));
-            }
 
-            @Override
-            public void onFailure(Call<TaskResponse> call, Throwable t) {
+                @Override
+                public void onFailure(Call<TaskResponse> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     public void startNegotiation(View v) {
