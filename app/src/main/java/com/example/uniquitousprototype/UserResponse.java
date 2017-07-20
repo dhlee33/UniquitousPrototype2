@@ -5,24 +5,20 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by YUNKYUSEOK on 2017-07-13.
+ * Created by YUNKYUSEOK on 2017-07-20.
  */
 
-public class TaskResponse {
+public class UserResponse {
     @SerializedName("results")
-    private List<Task> results;
+    private List<User> results;
     @SerializedName("next")
     private String next;
     @SerializedName("previous")
     private String previous;
     @SerializedName("count")
-    private int taskCount;
+    private int userCount;
 
-    public void setResults(List<Task> results) {
-        this.results = results;
-    }
-
-    public List<Task> getResults() {
+    public List<User> getResults() {
         return results;
     }
 
@@ -34,8 +30,7 @@ public class TaskResponse {
         return previous;
     }
 
-    public int getTaskCount() {
-        return taskCount;
+    public int getUserCount() {
+        return userCount;
     }
-
 }
