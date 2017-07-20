@@ -36,4 +36,7 @@ public interface ApiService {
 
     @PUT("bills/{id}/")
     Call<Task> updateTask(@Header("Authorization") String token, @Path("id") int id, @Body Task task);
+
+    @GET("bills/{category}/")
+    Call<TaskResponse> categoryGet(@Path("category") String category);
 }
