@@ -110,4 +110,7 @@ public class CreateTaskIntent extends AppCompatActivity{
 
         finish();
     }
+    public void cencle(View v){
+        finish();
+    }
 }
