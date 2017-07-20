@@ -1,14 +1,18 @@
 package com.example.uniquitousprototype;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private ApiApplication apiApplication;
     private ApiService apiService;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +132,37 @@ public class MainActivity extends AppCompatActivity {
         startNegotiationIntent.putExtra("rewardInt", rewardInt);
         startActivity(startNegotiationIntent);
 
+    }
+    public void update(View v){
+        final CharSequence[] items = {"수정", "삭제"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("작업을 선택하세요")
+
+                .setItems(items, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int index){
+                        switch (index)
+                        {
+                            case 1:
+                                break;
+                            case 2: Call<TaskResponse> call = apiService.getTaskList();
+                                call.enqueue(new Callback<TaskResponse>() {
+                                    @Override
+                                    public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                                        taskList = response.body().getResults();
+                                        recyclerView.setAdapter(new MyAdapter(taskList));
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<TaskResponse> call, Throwable t) {
+
+                                    }
+                                });
+
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 
