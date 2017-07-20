@@ -31,7 +31,6 @@
             android:layout_marginRight="4dp"
             android:singleLine = "true"
             android:lines = "1"
-            android:hint=""
             android:hint="아이디를 입력하세요"
             android:textSize="24dp"
             android:background="@drawable/edit"/>
