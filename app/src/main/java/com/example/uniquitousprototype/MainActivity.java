@@ -58,6 +58,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*Call<TaskResponse> call2 = apiService.login(new TaskResponse("parkseungil", "wafflestudio"));
+        call2.enqueue(new Callback<TaskResponse>() {
+            @Override
+            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                Toast.makeText(MainActivity.this, response.body().toString(), Toast.LENGTH_LONG);
+            }
+
+            @Override
+            public void onFailure(Call<TaskResponse> call, Throwable t) {
+
+            }
+        });*/
+
     }
 
     public void createTask(View v) {
@@ -86,6 +99,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*Call<TaskResponse> call2 = apiService.login(new TaskResponse("parkseungil", "wafflestudio"));
+        call2.enqueue(new Callback<TaskResponse>() {
+            @Override
+            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                Toast.makeText(MainActivity.this, response.body().getToken(), Toast.LENGTH_LONG);
+            }
+
+            @Override
+            public void onFailure(Call<TaskResponse> call, Throwable t) {
+
+            }
+        });*/
     }
 
     public void startNegotiation(View v) {
@@ -103,4 +128,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(startNegotiationIntent);
 
     }
+
+
 }
