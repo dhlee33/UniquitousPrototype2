@@ -25,8 +25,8 @@ public interface ApiService {
     Call<LoginUser> login(@Body User user);
 
     @POST("bills/")
-    Call<Task> postNewTask(//@Body Task task);
-            @Header("Authorization") String token, @Body Task task);
+    Call<Task> postNewTask(@Body Task task);
+            //@Header("Authorization") String token, @Body Task task);
 
     @DELETE("bills/{id}/")
     Call<Void> deleteTask(@Header("Authorization") String token, @Path("id") int id);

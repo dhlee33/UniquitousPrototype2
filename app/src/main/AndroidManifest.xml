@@ -23,7 +23,6 @@
         </activity>
 
         <activity android:name=".CreateTaskIntent"
-            android:label="새로운 일을 추가합니다."
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
