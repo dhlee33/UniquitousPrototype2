@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -25,4 +26,7 @@ public interface ApiService {
     @POST("bills/")
     Call<Task> postNewTask(//@Body Task task);
             @Header("Authorization") String token, @Body Task task);
+
+    @DELETE("bills/{id}/")
+    Call<TaskResponse> deleteTask(@Header("Authorization") String token, @Path("id") int id);
 }
