@@ -13,12 +13,44 @@
         android:id="@+id/imageView" />
 
     <EditText
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:hint="이메일 또는 휴대폰 번호 입력"
         android:textSize="32dp"
-        android:background="@drawable/edit"
-        android:layout_centerVertical="true"
+        android:background="@drawable/textlines"
+        android:id="@+id/input_id"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/input_password"
+        android:layout_alignStart="@+id/input_password" />
+
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호를 입력하세요"
+        android:textSize="32dp"
+        android:background="@drawable/textlines"
+        android:id="@+id/input_password"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/input_id"
         android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textlines"
+        android:textSize="32dp"
+        android:text="로그인"
+        android:gravity="center"
+        android:id="@+id/login_page_button"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/input_password"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
 
 </RelativeLayout>

@@ -28,5 +28,5 @@ public interface ApiService {
             @Header("Authorization") String token, @Body Task task);
 
     @DELETE("bills/{id}/")
-    Call<TaskResponse> deleteTask(@Header("Authorization") String token, @Path("id") int id);
+    Call<Void> deleteTask(@Header("Authorization") String token, @Path("id") int id);
 }
