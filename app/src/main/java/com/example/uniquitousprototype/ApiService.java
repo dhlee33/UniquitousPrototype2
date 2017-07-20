@@ -35,5 +35,5 @@ public interface ApiService {
     Call<User> signupNewUser(@Body User user);
 
     @PUT("bills/{id}/")
-    Call<Task> updateTask(@Header("Authorization") String token, @Body Task task);
+    Call<Task> updateTask(@Header("Authorization") String token, @Path("id") int id, @Body Task task);
 }
