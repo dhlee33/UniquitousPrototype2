@@ -20,7 +20,7 @@ public interface ApiService {
     Call<TaskResponse> getTaskList();
 
     @POST("api-token-auth/")
-    Call<TaskResponse> login(@Body TaskResponse taskResponse);
+    Call<LoginUser> login(@Body User user);
 
     @POST("bills/")
     Call<Task> postNewTask(@Body Task task);
