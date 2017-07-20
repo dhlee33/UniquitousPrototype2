@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -26,5 +27,8 @@ public class StartNegotiationIntent extends AppCompatActivity {
         costView.setText(String.valueOf(cost));
         rewardView.setText(String.valueOf(reward));
         sumView.setText(String.valueOf(cost + reward));
+    }
+    public void cencle(View v){
+        finish();
     }
 }

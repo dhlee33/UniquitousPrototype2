@@ -13,7 +13,7 @@
     <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@mipmap/arrow"
+        android:background="@mipmap/back_icon"
         android:onClick="cencle"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -151,7 +151,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:padding="2dp"
+            android:id="@+id/cost3"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:text="원"/>
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
