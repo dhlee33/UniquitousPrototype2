@@ -15,8 +15,9 @@
         <EditText
             android:id="@+id/text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="내용을 입력하세요"
+            android:gravity="top"
             android:background="@drawable/edit"
             android:layout_margin="5dp"
             />
@@ -92,6 +93,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:hint="추가 비용을 입력하세요"
+            android:padding="2dp"
             android:background="@drawable/textlines"
             android:layout_margin="2dp"
             />
@@ -118,6 +120,7 @@
             android:background="@drawable/textlines"
             android:hint="수고비를 입력하세요"
             android:layout_margin="2dp"
+            android:padding="2dp"
             android:gravity="right"
             android:id="@+id/cost2"
             />
