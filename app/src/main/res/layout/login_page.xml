@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="69dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView" />
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textlines"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/linearLayout10"
+        android:layout_alignStart="@+id/linearLayout10"
+        android:id="@+id/linearLayout11">
+
+        <EditText
+            android:id="@+id/input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:hint="이메일 또는 휴대폰 번호 입력"
+            android:textSize="24dp"
+            android:background="@drawable/edit"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textlines"
+        android:id="@+id/linearLayout10"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/linearLayout11"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:hint="비밀번호를 입력하세요"
+            android:textSize="24dp"
+            android:background="@drawable/edit"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textlines"
+        android:textSize="32dp"
+        android:text="로그인"
+        android:gravity="center"
+        android:id="@+id/login_page_button"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/linearLayout10"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="로그인 유지하기"
+        android:layout_marginTop="15dp"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/login_page_button"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/underline"
+        android:text="비밀번호를 잊으셨나요?"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignLeft="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox" />
+
+</RelativeLayout>

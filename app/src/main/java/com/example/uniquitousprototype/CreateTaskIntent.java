@@ -98,13 +98,13 @@ public class CreateTaskIntent extends AppCompatActivity{
                 @Override
                 public void onResponse(Call<Task> call, Response<Task> response) {
 
-                }
+            }
 
-                @Override
-                public void onFailure(Call<Task> call, Throwable t) {
+            @Override
+            public void onFailure(Call<Task> call, Throwable t) {
 
-                }
-            });
+            }
+        });
 
         }
 

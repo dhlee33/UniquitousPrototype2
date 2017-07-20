@@ -27,10 +27,13 @@ public interface ApiService {
     @POST("bills/")
     Call<Task> postNewTask(@Body Task task);
             //@Header("Authorization") String token, @Body Task task);
+
     @DELETE("bills/{id}/")
     Call<Void> deleteTask(@Header("Authorization") String token, @Path("id") int id);
 
-    @PUT("bills/{id}/")
-    Call<Task> updateTask(@Header("Authorization")String token, @Path("id")int id, @Body Task task);
+    @POST("signup/")
+    Call<User> signupNewUser(@Body User user);
 
+    @PUT("bills/{id}/")
+    Call<Task> updateTask(@Header("Authorization") String token, @Path("id") int id, @Body Task task);
 }
