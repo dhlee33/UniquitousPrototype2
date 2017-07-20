@@ -48,6 +48,8 @@
                     android:gravity="center"
                     android:hint="#태그 검색"
                     android:textSize="15dp"
+                    android:singleLine = "true"
+                    android:lines = "1"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0dp"
                     android:layout_weight="1"
