@@ -13,6 +13,12 @@ public class User {
     private String userName;
     @SerializedName("bills")
     private List<String> tasks;
+    private String password;
+
+    User (String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 
     public String getUserName() {
         return userName;
