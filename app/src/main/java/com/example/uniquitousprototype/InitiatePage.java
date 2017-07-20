@@ -25,7 +25,11 @@ public class InitiatePage extends AppCompatActivity {
     }
 
     public void to_signup_page(View v) {
-        Intent
+    }
+
+    public void to_lookup_page(View v) {
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
     }
 
 }
