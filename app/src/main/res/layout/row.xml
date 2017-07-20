@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -28,7 +29,7 @@
                 android:layout_weight="5">
 
                 <Button
-                    android:id="@+id/button1"
+                    android:id="@+id/person_data_button"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_alignParentBottom="true"
@@ -37,25 +38,25 @@
                     android:background="@mipmap/person_icon" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/shopping_button"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/button1"
-                    android:layout_toRightOf="@+id/button1"
+                    android:layout_toEndOf="@+id/person_data_button"
+                    android:layout_toRightOf="@+id/person_data_button"
                     android:background="@mipmap/shoppingcart_icon" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/delete_button"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:layout_toEndOf="@+id/button2"
-                    android:layout_toRightOf="@+id/button2"
+                    android:layout_toEndOf="@+id/shopping_button"
+                    android:layout_toRightOf="@+id/shopping_button"
                     android:background="@mipmap/clear_icon" />
 
             </RelativeLayout>
@@ -99,37 +100,38 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/textlines"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/textlines">
 
                     <TextView
-                        android:id="@+id/recyclerView_content"
+                        android:id="@+id/recycler_view_content"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"
                         android:layout_marginRight="20dp" />
 
                 </LinearLayout>
-                
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/recyclerView_category"/>
 
                 <TextView
+                    android:id="@+id/recycler_view_category"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/recyclerView_id"/>
+                    android:layout_height="0dp" />
 
                 <TextView
+                    android:id="@+id/recycler_view_id"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/recyclerView_cost"/>
+                    android:layout_height="0dp" />
 
                 <TextView
+                    android:id="@+id/recycler_view_cost"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:id="@+id/recyclerView_reward"/>
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:id="@+id/recycler_view_reward"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+
             </LinearLayout>
 
 
@@ -139,18 +141,19 @@
                 android:layout_weight="4">
 
                 <Button
-                    android:id="@+id/startButton"
+                    android:id="@+id/start_button"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:background="@mipmap/ic_launcher" />
+                    android:background="@mipmap/ic_launcher"
+                    android:onClick="startNegotiation" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_below="@+id/startButton">
+                    android:layout_below="@+id/start_button">
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/reply_button"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
@@ -161,29 +164,29 @@
                         android:background="@mipmap/tmp_icon" />
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
-                        android:layout_toEndOf="@+id/button4"
-                        android:layout_toRightOf="@+id/button4"
-                        android:id="@+id/textView2" />
+                        android:layout_toEndOf="@+id/reply_button"
+                        android:layout_toRightOf="@+id/reply_button" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/good_button"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@mipmap/tmp_icon"
                         android:layout_alignParentBottom="true"
+                        android:layout_toEndOf="@+id/textView2"
                         android:layout_toRightOf="@+id/textView2"
-                        android:layout_toEndOf="@+id/textView2" />
+                        android:background="@mipmap/tmp_icon" />
 
                     <TextView
+                        android:id="@+id/textView3"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:id="@+id/textView3"
                         android:layout_alignParentBottom="true"
-                        android:layout_toRightOf="@+id/button5"
-                        android:layout_toEndOf="@+id/button5" />
+                        android:layout_toEndOf="@+id/good_button"
+                        android:layout_toRightOf="@+id/good_button" />
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>

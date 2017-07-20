@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:layout_margin="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,23 +15,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/textlines">
+                android:background="@drawable/textlines"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:paddingLeft="4dp"
-                    android:paddingBottom="4dp"
                     android:text="도움이 필요해!"
+                    android:onClick="createTask"
                     android:textSize="24dp"/>
             </LinearLayout>
 
@@ -41,28 +38,35 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:background="@drawable/textlines">
+                android:background="@drawable/textlines"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
                     android:hint="#태그 검색"
-                    android:textSize="24dp" />
+                    android:textSize="15dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="3dp"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/search"
+                    android:layout_weight="1"
+                   />
             </LinearLayout>
         </LinearLayout>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:background="@drawable/textlines"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            >
+            android:padding="2dp" >
 
 
             <LinearLayout
@@ -72,98 +76,39 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
+                    android:text="DELIVERY"
+                    android:layout_weight="1"
+                    android:onClick="category_delivery"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
+                    android:text="HOMEWORK"
+                    android:layout_weight="1"
+                    android:onClick="category_delivery"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
+                    android:text="ERRAND"
+                    android:layout_weight="1"
+                    android:onClick="category_delivery"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/blue_icon"
-                    android:minHeight="0dp"
-                    android:minWidth="0dp"
-                    android:focusableInTouchMode="true"/>
+                    android:text="ETC"
+                    android:layout_weight="1"
+                    android:onClick="category_delivery"/>
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/topOfMain"
         android:layout_above="@+id/bottomOfMain"
-        android:id="@+id/recyclerView"
-        android:background="@drawable/textlines">
+        android:layout_below="@+id/topOfMain"
+        android:background="@drawable/textlines"
+        android:padding="10dp">
 
     </android.support.v7.widget.RecyclerView>
     
@@ -174,59 +119,30 @@
         android:id="@+id/bottomOfMain"
         android:orientation="horizontal"
         android:background="@drawable/textlines">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/blue_icon"
-                android:minWidth="0dp"
-                android:minHeight="0dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/blue_icon"
-                android:minWidth="0dp"
-                android:minHeight="0dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/blue_icon"
-                android:minWidth="0dp"
-                android:minHeight="0dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/blue_icon"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:id="@+id/a"/>
-        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="탐색"
+            android:layout_weight="1"
+           android:layout_margin="5dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="협상"
+            android:layout_margin="5dp"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="진행중"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="접속중"
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
 
     </LinearLayout>
 
