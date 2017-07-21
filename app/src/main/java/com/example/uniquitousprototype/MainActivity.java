@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         createTaskIntent.putExtra("type",type);
         createTaskIntent.putExtra("id",id);
         startActivity(createTaskIntent);
-
     }
     public void loading()
     {
@@ -190,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
-
                                     }
 
                                     @Override
@@ -198,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     }
                                 });
+                                category_get(v);
                                 break;
                             case 2:
                                 break;

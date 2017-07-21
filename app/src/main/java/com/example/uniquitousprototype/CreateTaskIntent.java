@@ -78,7 +78,7 @@ public class CreateTaskIntent extends AppCompatActivity{
         Task newTask = new Task(content, category, cost, reward);
         String token = "Token 036db40131c8e0bf24f2b70d74642b5170f592a6";
         if(type ==0) {
-            Call<Task> call = apiService.postNewTask(newTask);
+            Call<Task> call = apiService.postNewTask(token, newTask);
             call.enqueue(new Callback<Task>() {
                 @Override
                 public void onResponse(Call<Task> call, Response<Task> response) {
@@ -96,7 +96,6 @@ public class CreateTaskIntent extends AppCompatActivity{
             call.enqueue(new Callback<Task>() {
                 @Override
                 public void onResponse(Call<Task> call, Response<Task> response) {
-
             }
 
             @Override
@@ -106,7 +105,6 @@ public class CreateTaskIntent extends AppCompatActivity{
         });
 
         }
-
         finish();
     }
     public void cencle(View v){
