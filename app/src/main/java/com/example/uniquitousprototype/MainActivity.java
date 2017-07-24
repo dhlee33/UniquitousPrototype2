@@ -193,6 +193,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void update(final View v) {
+        if (!apiApplication.isLogedIn()) {
+            final Intent loginPageIntent = new Intent(this, LoginPage.class);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.not_login);
+            dialog.setTitle("에러");
+            dialog.findViewById(R.id.cancel).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            dialog.findViewById(R.id.accept_to_login_button).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(loginPageIntent);
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }
+            );
+            dialog.show();
+            return;
+        }
+
         final RelativeLayout relativeLayout = (RelativeLayout) v.getParent().getParent().getParent();
         TextView t = (TextView)relativeLayout.findViewById(R.id.recycler_view_id);
         final int id = Integer.parseInt(t.getText().toString());
@@ -201,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("작업을 선택하세요")
                 .setItems(items, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int index){
-                        switch(index)
+                        switch (index)
                         {
                             case 0:
                                 TextView tcontent = (TextView)relativeLayout.findViewById(R.id.recycler_view_content);

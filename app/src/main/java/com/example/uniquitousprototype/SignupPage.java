@@ -1,5 +1,6 @@
 package com.example.uniquitousprototype;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.Script;
@@ -72,6 +73,8 @@ public class SignupPage extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     setContentView(R.layout.complete_signup_page);
+                } else {
+                    failSignup();
                 }
             }
 
@@ -85,5 +88,20 @@ public class SignupPage extends AppCompatActivity {
     public void complete_signup(View view) {
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
+    }
+
+    public void failSignup() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.signup_fail);
+        dialog.setTitle("실패");
+        dialog.findViewById(R.id.fail_signup_button).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                }
+        );
+        dialog.show();
     }
 }
