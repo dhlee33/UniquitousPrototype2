@@ -1,5 +1,7 @@
 package com.example.uniquitousprototype;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -76,8 +78,9 @@ public class CreateTaskIntent extends AppCompatActivity{
         String category = radioButton.getText().toString();
 
         Task newTask = new Task(content, category, cost, reward);
-        String token = "Token 036db40131c8e0bf24f2b70d74642b5170f592a6";
-        if(type ==0) {
+        String token = "Token ";
+        token += apiApplication.getLoginUser().getToken();
+        if (type == 0) {
             Call<Task> call = apiService.postNewTask(token, newTask);
             call.enqueue(new Callback<Task>() {
                 @Override
@@ -90,9 +93,8 @@ public class CreateTaskIntent extends AppCompatActivity{
 
                 }
             });
-        }
-        else{
-            Call<Task> call = apiService.updateTask(token,id,newTask);
+        } else {
+            Call<Task> call = apiService.updateTask(token, id, newTask);
             call.enqueue(new Callback<Task>() {
                 @Override
                 public void onResponse(Call<Task> call, Response<Task> response) {
@@ -107,7 +109,7 @@ public class CreateTaskIntent extends AppCompatActivity{
         }
         finish();
     }
-    public void cencle(View v){
+    public void cancel_create (View v){
         finish();
     }
 }

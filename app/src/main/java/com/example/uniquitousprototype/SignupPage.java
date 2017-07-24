@@ -70,7 +70,9 @@ public class SignupPage extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                setContentView(R.layout.complete_signup_page);
+                if (response.isSuccessful()) {
+                    setContentView(R.layout.complete_signup_page);
+                }
             }
 
             @Override

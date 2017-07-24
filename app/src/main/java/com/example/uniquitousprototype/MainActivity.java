@@ -1,5 +1,6 @@
 package com.example.uniquitousprototype;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -73,7 +74,34 @@ public class MainActivity extends AppCompatActivity {
     {
         create(null,null,-1,-1,-1,0);
     }
+
     public void create(String content, String category, int cost, int reward,int id, int type) {
+        if (!apiApplication.isLogedIn()) {
+            final Intent loginPageIntent = new Intent(this, LoginPage.class);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.not_login);
+            dialog.setTitle("에러");
+            dialog.findViewById(R.id.cancel).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            dialog.findViewById(R.id.accept_to_login_button).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(loginPageIntent);
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }
+            );
+            dialog.show();
+            return;
+        }
         Intent createTaskIntent = new Intent(this, CreateTaskIntent.class);
         createTaskIntent.putExtra("content",content);
         createTaskIntent.putExtra("category",category);
@@ -83,13 +111,14 @@ public class MainActivity extends AppCompatActivity {
         createTaskIntent.putExtra("id",id);
         startActivity(createTaskIntent);
     }
-    public void loading()
-    {
+
+    public void loading() {
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("로딩중입니다...");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
+
     public void category_get(View v) {
         int categoryIndex = categoryGroup.getCheckedRadioButtonId();
         RadioButton c = (RadioButton)findViewById(categoryIndex);
@@ -126,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 category = "ETC";
                 break;
         }
+
         if(category != "0") {
             loading();
             Call<TaskResponse> call1 = apiService.categoryGet(category);
@@ -161,11 +191,12 @@ public class MainActivity extends AppCompatActivity {
         startNegotiationIntent.putExtra("rewardInt", rewardInt);
         startActivity(startNegotiationIntent);
     }
-    public void update(final View v){
+
+    public void update(final View v) {
         final RelativeLayout relativeLayout = (RelativeLayout) v.getParent().getParent().getParent();
         TextView t = (TextView)relativeLayout.findViewById(R.id.recycler_view_id);
         final int id = Integer.parseInt(t.getText().toString());
-        final CharSequence[] items = {"수정", "삭제","취소"};
+        final CharSequence[] items = {"수정", "삭제", "취소"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("작업을 선택하세요")
                 .setItems(items, new DialogInterface.OnClickListener(){
@@ -183,8 +214,13 @@ public class MainActivity extends AppCompatActivity {
                                 int reward = Integer.parseInt(treward.getText().toString());
                                 create(content,category,cost,reward,id,1);
                                 break;
+
                             case 1:
-                                String token = "Token 036db40131c8e0bf24f2b70d74642b5170f592a6";
+                                if (!apiApplication.isLogedIn()) {
+                                    return;
+                                }
+                                String token = "Token ";
+                                token += apiApplication.getLoginUser().getToken();
                                 Call<Void> call = apiService.deleteTask(token,id);
                                 call.enqueue(new Callback<Void>() {
                                     @Override
@@ -198,6 +234,7 @@ public class MainActivity extends AppCompatActivity {
                                 });
                                 category_get(v);
                                 break;
+
                             case 2:
                                 break;
                         }
@@ -206,5 +243,4 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 }

@@ -33,5 +33,4 @@ public class InitiatePage extends AppCompatActivity {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
     }
-
 }

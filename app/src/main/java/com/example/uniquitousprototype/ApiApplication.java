@@ -1,6 +1,7 @@
 package com.example.uniquitousprototype;
 
 import android.app.Application;
+import android.app.Dialog;
 import android.content.res.Configuration;
 
 import java.io.IOException;
@@ -56,18 +57,19 @@ public class ApiApplication extends Application {
         return apiService;
     }
 
-    public void setLoginUser(User user) {
-        Call<LoginUser> loginUserCall = apiService.login(user);
-        loginUserCall.enqueue(new Callback<LoginUser>() {
-            @Override
-            public void onResponse(Call<LoginUser> call, retrofit2.Response<LoginUser> response) {
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
+    }
 
-            }
+    public LoginUser getLoginUser() {
+        return loginUser;
+    }
 
-            @Override
-            public void onFailure(Call<LoginUser> call, Throwable t) {
+    public boolean isLogedIn() {
+        return loginUser != null;
+    }
 
-            }
-        });
+    public void logout() {
+        loginUser = null;
     }
 }

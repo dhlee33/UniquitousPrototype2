@@ -29,7 +29,6 @@
             android:layout_marginBottom="2dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
-            android:singleLine = "true"
             android:lines = "1"
             android:maxLines="1"
             android:hint="아이디를 입력하세요"
@@ -56,7 +55,6 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:hint="비밀번호를 입력하세요"
-            android:singleLine = "true"
             android:lines = "1"
             android:maxLines="1"
             android:textSize="24dp"
@@ -72,6 +70,7 @@
         android:text="로그인"
         android:gravity="center"
         android:id="@+id/login_page_button"
+        android:onClick="login"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/linearLayout10"
         android:layout_centerHorizontal="true" />
