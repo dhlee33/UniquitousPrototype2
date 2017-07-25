@@ -9,7 +9,7 @@
         android:text="아이디를 입력해주세요."
         android:textSize="24dp"
         android:id="@+id/textView"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/id_input_edittext"
         android:layout_alignStart="@+id/id_input_edittext" />
@@ -17,8 +17,8 @@
     <EditText
         android:id="@+id/id_input_edittext"
         android:layout_width="match_parent"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_below="@+id/textView" />
@@ -43,7 +43,8 @@
             android:text="다음"
             android:textSize="30dp"
             android:onClick="accept_id"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit" />
     </RelativeLayout>
 
 </RelativeLayout>

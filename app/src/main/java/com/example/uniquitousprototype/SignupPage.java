@@ -34,6 +34,10 @@ public class SignupPage extends AppCompatActivity {
     public void accept_id(View view) {
         EditText idEditText = (EditText) findViewById(R.id.id_input_edittext);
         idString = idEditText.getText().toString();
+        if (idString.length() == 0) {
+            Toast.makeText(SignupPage.this, "아이디를 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         setContentView(R.layout.password_input_page);
     }
 
@@ -60,12 +64,20 @@ public class SignupPage extends AppCompatActivity {
     public void accept_name(View view) {
         EditText nameEditText = (EditText) findViewById(R.id.name_input_edittext);
         nameString = nameEditText.getText().toString();
+        if (nameString.length() == 0) {
+            Toast.makeText(SignupPage.this, "이름을 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         setContentView(R.layout.email_input_page);
     }
 
     public void accept_email(View view) {
         EditText emailEditText = (EditText) findViewById(R.id.email_input_edittext);
         emailString = emailEditText.getText().toString();
+        if (emailString.length() == 0) {
+            Toast.makeText(SignupPage.this, "이메일을 입력하여 주십시오.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Call<User> call = apiService.signupNewUser(new User(idString, passwordString, passwordConfirmString, nameString, emailString));
         call.enqueue(new Callback<User>() {
@@ -103,5 +115,25 @@ public class SignupPage extends AppCompatActivity {
                 }
         );
         dialog.show();
+    }
+
+    public void cancel_password(View view) {
+        setContentView(R.layout.id_input_page);
+        EditText idEditText = (EditText) findViewById(R.id.id_input_edittext);
+        idEditText.setText(idString);
+    }
+
+    public void cancel_password_confirm(View view) {
+        setContentView(R.layout.password_input_page);
+    }
+
+    public void cancel_name(View view) {
+        setContentView(R.layout.password_confirm_page);
+    }
+
+    public void cancel_email(View view) {
+        setContentView(R.layout.name_input_page);
+        EditText nameEditText = (EditText) findViewById(R.id.name_input_edittext);
+        nameEditText.setText(nameString);
     }
 }
