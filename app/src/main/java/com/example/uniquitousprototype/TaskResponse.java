@@ -18,10 +18,6 @@ public class TaskResponse {
     @SerializedName("count")
     private int taskCount;
 
-    public void setResults(List<Task> results) {
-        this.results = results;
-    }
-
     public List<Task> getResults() {
         return results;
     }
