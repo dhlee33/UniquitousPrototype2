@@ -2,7 +2,9 @@ package com.example.uniquitousprototype;
 
 import android.app.Application;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.widget.Toast;
 
 import java.io.IOException;
 

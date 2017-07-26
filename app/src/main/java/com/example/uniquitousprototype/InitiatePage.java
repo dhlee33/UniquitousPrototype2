@@ -12,11 +12,19 @@ import android.widget.Button;
  */
 
 public class InitiatePage extends AppCompatActivity {
+    private ApiApplication apiApplication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initiate_page);
+        apiApplication = (ApiApplication) getApplicationContext();
+
+        if (apiApplication.isLogedIn()) {
+            Intent main = new Intent(this, MainActivity.class);
+            startActivity(main);
+            finish();
+        }
     }
 
     public void to_login_page(View v) {

@@ -98,8 +98,9 @@ public class SignupPage extends AppCompatActivity {
     }
 
     public void complete_signup(View view) {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        Intent loginIntent = new Intent(this, LoginPage.class);
+        startActivity(loginIntent);
+        finish();
     }
 
     public void failSignup() {
