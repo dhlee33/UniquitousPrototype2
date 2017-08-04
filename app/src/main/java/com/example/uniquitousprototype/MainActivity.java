@@ -71,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<TaskResponse> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
                 Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
+
+
 
             }
         });
