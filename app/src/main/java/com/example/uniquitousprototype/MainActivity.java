@@ -43,8 +43,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        SlidingView sv = new SlidingView(this);
+        View v1 = View.inflate(this, R.layout.activity_main, null);
+        View v2 = View.inflate(this, R.layout.t2, null);
+        sv.addView(v1);
+        sv.addView(v2);
+        setContentView(sv);
         apiApplication = (ApiApplication) getApplicationContext();
         apiService = apiApplication.getApiService();
         taskList = new ArrayList<>();
