@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "내 소원은 윤규석 메이플 지우는 것", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "하오 리지노 좇바색기진짜", Toast.LENGTH_SHORT).show();
             }
         });
 
