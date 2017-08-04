@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -82,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
             final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
             dialog.findViewById(R.id.cancel).setOnClickListener(
                     new View.OnClickListener() {
                         @Override
@@ -199,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
             final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
             dialog.findViewById(R.id.cancel).setOnClickListener(
                     new View.OnClickListener() {
                         @Override
