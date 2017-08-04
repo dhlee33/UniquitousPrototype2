@@ -21,23 +21,23 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/textlines"
-                >
+                android:layout_weight="2"
+                android:background="@drawable/textlines">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="도움이 필요해!"
+                    android:text="글 작성"
                     android:onClick="createTask"
                     android:textSize="24dp"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:background="@drawable/textlines"
                 android:focusable="true"
                 android:focusableInTouchMode="true">
@@ -48,71 +48,94 @@
                     android:gravity="center"
                     android:hint="#태그 검색"
                     android:textSize="15dp"
-                    android:singleLine = "true"
+                    android:maxLines="1"
                     android:lines = "1"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0dp"
                     android:layout_weight="1"
-                    android:layout_marginLeft="3dp"
-                    />
+                    android:layout_marginLeft="3dp" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/search"
-                    android:layout_weight="1"
-                   />
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/textlines"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/setup_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@mipmap/setup_icon"
+                    android:onClick="setup_menu"/>
             </LinearLayout>
         </LinearLayout>
 
-        <info.hoang8f.android.segmented.SegmentedGroup
-            android:id="@+id/segmented2"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
+            android:background="@drawable/textlines">
 
-            <RadioButton
-                android:id="@+id/categ1"
-                android:layout_width="wrap_content"
+            <info.hoang8f.android.segmented.SegmentedGroup
+                android:id="@+id/segmented2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="전체"
-                style="@style/RadioButton"
-                android:onClick="category_get"
-                android:checked="true"
-                android:layout_weight="1"/>
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/categ2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="배달"
-                android:onClick="category_get"
-                android:layout_weight="1"
-                style="@style/RadioButton" />
-            <RadioButton
-                android:id="@+id/categ3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="숙제"
-                android:onClick="category_get"
-                android:layout_weight="1"
-                style="@style/RadioButton" />
-            <RadioButton
-                android:id="@+id/categ4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="category_get"
-                android:text="심부름"
-                android:layout_weight="1"
-                style="@style/RadioButton" />
-            <RadioButton
-                android:id="@+id/categ5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="기타"
-                android:onClick="category_get"
-                style="@style/RadioButton" />
-        </info.hoang8f.android.segmented.SegmentedGroup>
+                <RadioButton
+                    android:id="@+id/categ1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체"
+                    style="@style/RadioButton"
+                    android:onClick="category_get"
+                    android:checked="true"
+                    android:layout_weight="1"/>
+
+                <RadioButton
+                    android:id="@+id/categ2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배달"
+                    android:onClick="category_get"
+                    android:layout_weight="1"
+                    style="@style/RadioButton" />
+                <RadioButton
+                    android:id="@+id/categ3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="숙제"
+                    android:onClick="category_get"
+                    android:layout_weight="1"
+                    style="@style/RadioButton" />
+                <RadioButton
+                    android:id="@+id/categ4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="category_get"
+                    android:text="심부름"
+                    android:layout_weight="1"
+                    style="@style/RadioButton" />
+                <RadioButton
+                    android:id="@+id/categ5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기타"
+                    android:onClick="category_get"
+                    style="@style/RadioButton" />
+            </info.hoang8f.android.segmented.SegmentedGroup>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
