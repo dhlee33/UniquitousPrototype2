@@ -2,22 +2,17 @@ package com.example.uniquitousprototype;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.annotation.IdRes;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,17 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
-
-
-
+                Toast.makeText(MainActivity.this, "내 소원은 윤규석 메이플 지우는 것", Toast.LENGTH_SHORT).show();
             }
         });
 
