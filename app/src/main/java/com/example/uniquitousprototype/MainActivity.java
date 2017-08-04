@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "??", Toast.LENGTH_SHORT).show();
 
             }
         });
