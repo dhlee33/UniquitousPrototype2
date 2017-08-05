@@ -18,11 +18,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "내 소원은 윤규석 메이플 지우는 것", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
             final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
             dialog.findViewById(R.id.cancel).setOnClickListener(
                     new View.OnClickListener() {
                         @Override
@@ -282,8 +283,8 @@ public class MainActivity extends AppCompatActivity {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
             final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
             dialog.findViewById(R.id.cancel).setOnClickListener(
                     new View.OnClickListener() {
                         @Override

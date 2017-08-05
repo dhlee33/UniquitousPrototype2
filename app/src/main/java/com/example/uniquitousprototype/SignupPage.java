@@ -22,6 +22,8 @@ public class SignupPage extends AppCompatActivity {
     private String idString, passwordString, passwordConfirmString, nameString, emailString;
     private ApiApplication apiApplication;
     private ApiService apiService;
+    private static final int FINISH = 1002;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +101,7 @@ public class SignupPage extends AppCompatActivity {
 
     public void complete_signup(View view) {
         Intent loginIntent = new Intent(this, LoginPage.class);
+        setResult(FINISH);
         startActivity(loginIntent);
         finish();
     }
