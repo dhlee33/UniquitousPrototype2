@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -35,13 +36,13 @@ import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static RecyclerView recyclerView;
-    public static List<Task> taskList;
-    private LinearLayoutManager linearLayoutManager;
-    private ApiApplication apiApplication;
-    private ApiService apiService;
-    private ProgressDialog progressDialog;
-    private SegmentedGroup categoryGroup;
+    ViewPager vp;
+
+
+
+
+
+
     private String[] menuLists = {"프로필", "친구찾기", "친구목록", "로그아웃"};
     private ListView listView;
     private DrawerLayout drawerLayout;
@@ -50,14 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SlidingView sv = new SlidingView(this);
-        View v1 = View.inflate(this, R.layout.activity_main, null);
-        View v2 = View.inflate(this, R.layout.t2, null);
-        sv.addView(v1);
-        sv.addView(v2);
-        setContentView(sv);
-        apiApplication = (ApiApplication) getApplicationContext();
-        apiService = apiApplication.getApiService();
+        setContentView(R.layout.activity_main);
+
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuLists));
@@ -78,27 +73,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        taskList = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        categoryGroup = (SegmentedGroup) findViewById(R.id.segmented2);
-        loading();
-        Call<TaskResponse> call = apiService.getTaskList();
-        call.enqueue(new Callback<TaskResponse>() {
-            @Override
-            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
-                taskList = response.body().getResults();
-                recyclerView.setAdapter(new MyAdapter(taskList));
-                progressDialog.dismiss();
-            }
-
-            @Override
-            public void onFailure(Call<TaskResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "내 소원은 윤규석 메이플 지우는 것", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -196,70 +170,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(createTaskIntent);
     }
 
-    public void loading() {
-        progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("로딩중입니다...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
 
-    public void category_get(View v) {
-        int categoryIndex = categoryGroup.getCheckedRadioButtonId();
-        RadioButton c = (RadioButton)findViewById(categoryIndex);
-        String categ = c.getText().toString();
-        String category = "0";
-        switch (categ){
-            case "전체":
-                Call<TaskResponse> call = apiService.getTaskList();
-                loading();
-                call.enqueue(new Callback<TaskResponse>() {
-                    @Override
-                    public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
-                        taskList = response.body().getResults();
-                        recyclerView.setAdapter(new MyAdapter(taskList));
-                        progressDialog.dismiss();
-                    }
 
-                    @Override
-                    public void onFailure(Call<TaskResponse> call, Throwable t) {
 
-                    }
-                });
-                break;
-            case "배달":
-                category = "DELIVERY";
-                break;
-            case "숙제":
-                category = "HOMEWORK";
-                break;
-            case "심부름":
-                category = "ERRAND";
-                break;
-            case "기타":
-                category = "ETC";
-                break;
-        }
-
-        if(category != "0") {
-            loading();
-            Call<TaskResponse> call1 = apiService.categoryGet(category);
-            final String clickedCategory = ((Button) v).getText().toString();
-            call1.enqueue(new Callback<TaskResponse>() {
-                @Override
-                public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
-                    taskList.clear();
-                    taskList = response.body().getResults();
-                    recyclerView.setAdapter(new MyAdapter(taskList));
-                    progressDialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<TaskResponse> call, Throwable t) {
-
-                }
-            });
-        }
-    }
 
     public void startNegotiation(View v) {
         CardView cardView = (CardView) v.getParent().getParent().getParent().getParent();
@@ -273,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         Intent startNegotiationIntent = new Intent(this, StartNegotiationIntent.class);
         startNegotiationIntent.putExtra("costInt", costInt);
         startNegotiationIntent.putExtra("rewardInt", rewardInt);
+        startActivity(startNegotiationIntent);
         startActivity(startNegotiationIntent);
     }
 
