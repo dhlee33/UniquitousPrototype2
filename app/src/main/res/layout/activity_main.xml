@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="match_parent"
@@ -12,121 +13,53 @@
         android:orientation="vertical"
         tools:context=".MainActivity"
         android:layout_margin="10dp">
-
         <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/topOfMain">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/textlines">
-
-                <info.hoang8f.android.segmented.SegmentedGroup
-                    android:id="@+id/segmented2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/categ1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="전체"
-                        style="@style/RadioButton"
-                        android:onClick="category_get"
-                        android:checked="true"
-                        android:layout_weight="1"/>
-
-                    <RadioButton
-                        android:id="@+id/categ2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="배달"
-                        android:onClick="category_get"
-                        android:layout_weight="1"
-                        style="@style/RadioButton" />
-                    <RadioButton
-                        android:id="@+id/categ3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="숙제"
-                        android:onClick="category_get"
-                        android:layout_weight="1"
-                        style="@style/RadioButton" />
-                    <RadioButton
-                        android:id="@+id/categ4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="category_get"
-                        android:text="심부름"
-                        android:layout_weight="1"
-                        style="@style/RadioButton" />
-                    <RadioButton
-                        android:id="@+id/categ5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기타"
-                        android:onClick="category_get"
-                        style="@style/RadioButton" />
-                </info.hoang8f.android.segmented.SegmentedGroup>
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottomOfMain"
-            android:layout_below="@+id/topOfMain"
-            android:background="@drawable/textlines"
-            android:padding="10dp">
-
-        </android.support.v7.widget.RecyclerView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:id="@+id/bottomOfMain"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@drawable/textlines">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="탐색"
+            <TextView
+                android:id="@+id/tab_first"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="협상"
-                android:layout_margin="5dp"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="진행중"
-                android:layout_weight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="접속중"
-                android:layout_weight="1"
-                android:layout_margin="5dp"/>
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="탐색" />
 
+            <TextView
+                android:id="@+id/tab_second"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="버튼2" />
+
+            <TextView
+                android:id="@+id/tab_third"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="버튼3" />
         </LinearLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll">
+        </android.support.v4.view.ViewPager>
+
+
 
     </RelativeLayout>
-
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"

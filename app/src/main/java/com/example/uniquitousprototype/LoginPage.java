@@ -54,6 +54,7 @@ public class LoginPage extends AppCompatActivity {
     private void isLoginSuccess() {
         if (apiApplication.isLogedIn()) {
             final Intent mainIntent = new Intent(this, MainActivity.class);
+            View view = (View) getLayoutInflater().inflate(R.layout.activity_main, null);
             final Dialog loginSuccessDialog = new Dialog(this);
             loginSuccessDialog.setContentView(R.layout.login_success);
             loginSuccessDialog.setTitle("로그인 성공");
