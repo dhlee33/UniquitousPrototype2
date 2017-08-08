@@ -17,6 +17,7 @@ public class User {
     private String password;
     @SerializedName("passwordConfirm")
     private String passwordConfirm;
+    @SerializedName("name")
     private String name;
     @SerializedName("email")
     private String email;
