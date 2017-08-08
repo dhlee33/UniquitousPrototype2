@@ -13,45 +13,51 @@
         android:orientation="vertical"
         tools:context=".MainActivity"
         android:layout_margin="10dp">
-
-
         <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:id="@+id/bottomOfMain"
-            android:orientation="horizontal"
-            android:background="@drawable/textlines">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="탐색"
-                android:id="@+id/b1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tab_first"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="협상"
-                android:id="@+id/b2"
-                android:layout_margin="5dp"
-                android:layout_weight="1"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="진행중"
-                android:id="@+id/b3"
-                android:layout_weight="1"
-                android:layout_margin="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="접속중"
-                android:id="@+id/b4"
-                android:layout_weight="1"
-                android:layout_margin="5dp"/>
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="탐색" />
 
+            <TextView
+                android:id="@+id/tab_second"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="버튼2" />
+
+            <TextView
+                android:id="@+id/tab_third"
+                android:layout_width="0dip"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@drawable/tab_color_selector"
+                android:background="@drawable/tab_bg_selector"
+                android:text="버튼3" />
         </LinearLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll">
+        </android.support.v4.view.ViewPager>
+
+
+
     </RelativeLayout>
     <ListView
         android:id="@+id/list_view"
