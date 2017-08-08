@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/textlines">
+        android:background="@drawable/textlines"
+        android:id="@+id/linearLayout2">
 
     <info.hoang8f.android.segmented.SegmentedGroup
         android:id="@+id/segmented2"
@@ -17,7 +18,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/categ1"
+            android:id="@+id/myTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내가 쓴 글"
@@ -26,7 +27,7 @@
             android:layout_weight="1"/>
 
         <RadioButton
-            android:id="@+id/categ2"
+            android:id="@+id/undertakeTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="지원한 글"
@@ -40,7 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/textlines"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_below="@+id/linearLayout2">
 
         </android.support.v7.widget.RecyclerView>
 

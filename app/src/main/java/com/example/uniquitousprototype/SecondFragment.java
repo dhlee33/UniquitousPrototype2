@@ -8,13 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import info.hoang8f.android.segmented.SegmentedGroup;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +35,7 @@ public class SecondFragment extends Fragment
     private ApiApplication apiApplication;
     private ApiService apiService;
     private ProgressDialog progressDialog;
+    private SegmentedGroup categoryGroup;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private RelativeLayout layout;
@@ -46,6 +50,7 @@ public class SecondFragment extends Fragment
     {
         apiApplication = (ApiApplication) getActivity().getApplicationContext();
         apiService = apiApplication.getApiService();
+
         if(apiApplication.isLogedIn()) {
             layout = (RelativeLayout) inflater.inflate(R.layout.fragment_second, container, false);
 
@@ -53,8 +58,12 @@ public class SecondFragment extends Fragment
             recyclerView.setHasFixedSize(true);
             linearLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
+            categoryGroup = (SegmentedGroup) layout.findViewById(R.id.segmented2);
+            RadioButton radioButton1 = (RadioButton)layout.findViewById(R.id.myTask);
+            RadioButton radioButton2 = (RadioButton)layout.findViewById(R.id.undertakeTask);
+            radioButton1.setOnClickListener(mClickListener);
             loading();
-            Call<TaskResponse> call = apiService.myTask("Token: " + apiApplication.getLoginUser().getToken());
+            Call<TaskResponse> call = apiService.myTask("Token " + apiApplication.getLoginUser().getToken());
             call.enqueue(new Callback<TaskResponse>() {
                 @Override
                 public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
@@ -82,6 +91,37 @@ public class SecondFragment extends Fragment
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
+    Button.OnClickListener mClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            int categoryIndex = categoryGroup.getCheckedRadioButtonId();
+            RadioButton c = (RadioButton)layout.findViewById(categoryIndex);
+            String categ = c.getText().toString();
+            String category = "0";
+            switch (categ){
+                case "내가 쓴 글":
+                    Call<TaskResponse> call = apiService.myTask("Token " + apiApplication.getLoginUser().getToken());
+                    loading();
+                    call.enqueue(new Callback<TaskResponse>() {
+                        @Override
+                        public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                            myTask = response.body().getResults();
+                            recyclerView.setAdapter(new MyAdapter(myTask));
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onFailure(Call<TaskResponse> call, Throwable t) {
+                            Toast.makeText(getActivity(), "인터넷 연결을 확인하세요.", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                    break;
+                case "지원한 글" :
+                    break;
+
+            }
+        }
+    };
 }
 
 
