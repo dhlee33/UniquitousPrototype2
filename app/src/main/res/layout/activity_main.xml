@@ -49,7 +49,9 @@
                 android:textColor="@drawable/tab_color_selector"
                 android:background="@drawable/tab_bg_selector"
                 android:text="버튼3" />
+
         </LinearLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
@@ -57,18 +59,15 @@
             android:layout_above="@+id/ll">
         </android.support.v4.view.ViewPager>
 
-
-
     </RelativeLayout>
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/black"
-        android:dividerHeight="0dp"
-        android:background="@android:color/background_light">
 
-    </ListView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/menu_recycler_view"
+        android:choiceMode="singleChoice"
+        android:layout_gravity="left"
+        android:background="#FFFFFF">
+    </android.support.v7.widget.RecyclerView>
+
 </android.support.v4.widget.DrawerLayout>

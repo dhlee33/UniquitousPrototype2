@@ -27,6 +27,7 @@ public class ApiApplication extends Application {
     public static final String BASE_URL = "http://ec2-13-124-51-140.ap-northeast-2.compute.amazonaws.com:8000/";
     private ApiService apiService;
     private LoginUser loginUser;
+    private User nowUser;
 
     @Override
     public void onCreate() {

@@ -38,4 +38,7 @@ public interface ApiService {
 
     @GET("bills/{category}/")
     Call<TaskResponse> categoryGet(@Path("category") String category);
+
+    @GET("users/{id}/")
+    Call<User> getUser(@Path("id") int id);
 }
