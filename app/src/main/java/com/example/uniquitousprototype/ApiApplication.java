@@ -3,6 +3,7 @@ package com.example.uniquitousprototype;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.widget.Toast;
 
@@ -27,11 +28,15 @@ public class ApiApplication extends Application {
     public static final String BASE_URL = "http://ec2-13-124-51-140.ap-northeast-2.compute.amazonaws.com:8000/";
     private ApiService apiService;
     private LoginUser loginUser;
+    private boolean auto;
     private User nowUser;
+    SharedPreferences login;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        login = getSharedPreferences("login", MODE_PRIVATE);
+        auto = login.getBoolean("autologin",false);
     }
 
     public ApiService getApiService() {
@@ -59,17 +64,24 @@ public class ApiApplication extends Application {
         }
         return apiService;
     }
+    public boolean getauto()
+    {
+        return auto;
+    }
 
     public void setLoginUser(LoginUser loginUser) {
         this.loginUser = loginUser;
     }
-
+    public void setToken(String token)
+    {
+        this.loginUser.setToken(token);
+    }
     public LoginUser getLoginUser() {
         return loginUser;
     }
 
     public boolean isLogedIn() {
-        return loginUser != null;
+        return loginUser!=null;
     }
 
     public void logout() {

@@ -1,6 +1,7 @@
 package com.example.uniquitousprototype;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -21,8 +22,10 @@ public class InitiatePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initiate_page);
         apiApplication = (ApiApplication) getApplicationContext();
+        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
 
-        if (apiApplication.isLogedIn()) {
+        if (apiApplication.getauto()) {
+            apiApplication.setToken(login.getString("token",null));
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
             finish();

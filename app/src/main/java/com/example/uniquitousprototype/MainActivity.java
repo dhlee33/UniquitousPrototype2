@@ -3,6 +3,7 @@ package com.example.uniquitousprototype;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private RecyclerView menuRecyclerView;
     private LinearLayoutManager menuLayoutManager;
-
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
         tab_third.setOnClickListener(movePageListener);
         tab_third.setTag(2);
         tab_first.setSelected(true);
-
+        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+        editor = login.edit();
+        editor.putString("token", apiApplication.getLoginUser().getToken());
         menuRecyclerView = (RecyclerView) findViewById(R.id.menu_recycler_view);
         menuRecyclerView.setHasFixedSize(true);
         menuLayoutManager = new LinearLayoutManager(this);
