@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1439dc"
     >
 
     <TextView
@@ -11,8 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="30dp"
-        android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:text="세번째 페이지"/>
+        android:text="진행중"/>
 
 </RelativeLayout>

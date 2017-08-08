@@ -18,27 +18,30 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    @GET("bills")
+    @GET("errands/")
     Call<TaskResponse> getTaskList();
 
-    @POST("api-token-auth/")
+    @POST("user/login/")
     Call<LoginUser> login(@Body User user);
 
-    @POST("bills/")
+    @POST("errands/")
     Call<Task> postNewTask(@Header("Authorization") String token, @Body Task task);
 
-    @DELETE("bills/{id}/")
+    @DELETE("errands/{id}/")
     Call<Void> deleteTask(@Header("Authorization") String token, @Path("id") int id);
 
-    @POST("signup/")
+    @POST("user/signup/")
     Call<User> signupNewUser(@Body User user);
 
-    @PUT("bills/{id}/")
+    @PUT("errands/{id}/")
     Call<Task> updateTask(@Header("Authorization") String token, @Path("id") int id, @Body Task task);
 
-    @GET("bills/{category}/")
+    @GET("errands/{category}/")
     Call<TaskResponse> categoryGet(@Path("category") String category);
 
-    @GET("users/{id}/")
+    @GET("user/{id}/")
     Call<User> getUser(@Path("id") int id);
+
+    @GET("user/myErrand/")
+    Call<TaskResponse> myTask(@Header("Authorization") String token);
 }

@@ -63,6 +63,16 @@ public class FirstFragment extends Fragment
         linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         categoryGroup = (SegmentedGroup) layout.findViewById(R.id.segmented2);
+        RadioButton radioButton1 = (RadioButton)layout.findViewById(R.id.categ1);
+        RadioButton radioButton2 = (RadioButton)layout.findViewById(R.id.categ2);
+        RadioButton radioButton3 = (RadioButton)layout.findViewById(R.id.categ3);
+        RadioButton radioButton4 = (RadioButton)layout.findViewById(R.id.categ4);
+        RadioButton radioButton5 = (RadioButton)layout.findViewById(R.id.categ5);
+        radioButton1.setOnClickListener(mClickListener);
+        radioButton2.setOnClickListener(mClickListener);
+        radioButton3.setOnClickListener(mClickListener);
+        radioButton4.setOnClickListener(mClickListener);
+        radioButton5.setOnClickListener(mClickListener);
         loading();
         Call<TaskResponse> call = apiService.getTaskList();
         call.enqueue(new Callback<TaskResponse>() {
@@ -75,64 +85,58 @@ public class FirstFragment extends Fragment
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "내 소원은 윤규석 메이플 지우는 것", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "인터넷 연결을 확인하세요.", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
         return layout;
     }
-    public void create(String content, String category, int cost, int reward,int id, int type) {
-        if (!apiApplication.isLogedIn()) {
-            final Intent loginPageIntent = new Intent(getActivity(), LoginPage.class);
-            final Dialog dialog = new Dialog(getActivity());
-            dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
-            dialog.findViewById(R.id.cancel).setOnClickListener(
-                    new View.OnClickListener() {
+    Button.OnClickListener mClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            int categoryIndex = categoryGroup.getCheckedRadioButtonId();
+            RadioButton c = (RadioButton)layout.findViewById(categoryIndex);
+            String categ = c.getText().toString();
+            String category = "0";
+            switch (categ){
+                case "전체":
+                    Call<TaskResponse> call = apiService.getTaskList();
+                    loading();
+                    call.enqueue(new Callback<TaskResponse>() {
                         @Override
-                        public void onClick(View view) {
-                            dialog.dismiss();
+                        public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                            taskList = response.body().getResults();
+                            recyclerView.setAdapter(new MyAdapter(taskList));
+                            progressDialog.dismiss();
                         }
-                    }
-            );
-            dialog.findViewById(R.id.accept_to_login_button).setOnClickListener(
-                    new View.OnClickListener() {
+
                         @Override
-                        public void onClick(View view) {
-                            startActivity(loginPageIntent);
-                            dialog.dismiss();
+                        public void onFailure(Call<TaskResponse> call, Throwable t) {
+
                         }
-                    }
-            );
-            dialog.show();
-            return;
-        }
-        Intent createTaskIntent = new Intent(getActivity(), CreateTaskIntent.class);
-        createTaskIntent.putExtra("content",content);
-        createTaskIntent.putExtra("category",category);
-        createTaskIntent.putExtra("cost",cost);
-        createTaskIntent.putExtra("reward",reward);
-        createTaskIntent.putExtra("type",type);
-        createTaskIntent.putExtra("id",id);
-        startActivity(createTaskIntent);
-    }
-    public void loading() {
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("로딩중입니다...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-    public void category_get(View v) {
-        int categoryIndex = categoryGroup.getCheckedRadioButtonId();
-        RadioButton c = (RadioButton)layout.findViewById(categoryIndex);
-        String categ = c.getText().toString();
-        String category = "0";
-        switch (categ){
-            case "전체":
-                Call<TaskResponse> call = apiService.getTaskList();
+                    });
+                    break;
+                case "배달":
+                    category = "DELIVERY";
+                    break;
+                case "숙제":
+                    category = "HOMEWORK";
+                    break;
+                case "심부름":
+                    category = "ERRAND";
+                    break;
+                case "기타":
+                    category = "ETC";
+                    break;
+            }
+
+            if(category != "0") {
                 loading();
-                call.enqueue(new Callback<TaskResponse>() {
+                Call<TaskResponse> call1 = apiService.categoryGet(category);
+                final String clickedCategory = ((Button) v).getText().toString();
+                call1.enqueue(new Callback<TaskResponse>() {
                     @Override
                     public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                        taskList.clear();
                         taskList = response.body().getResults();
                         recyclerView.setAdapter(new MyAdapter(taskList));
                         progressDialog.dismiss();
@@ -143,40 +147,14 @@ public class FirstFragment extends Fragment
 
                     }
                 });
-                break;
-            case "배달":
-                category = "DELIVERY";
-                break;
-            case "숙제":
-                category = "HOMEWORK";
-                break;
-            case "심부름":
-                category = "ERRAND";
-                break;
-            case "기타":
-                category = "ETC";
-                break;
+            }
         }
+    };
 
-        if(category != "0") {
-            loading();
-            Call<TaskResponse> call1 = apiService.categoryGet(category);
-            final String clickedCategory = ((Button) v).getText().toString();
-            call1.enqueue(new Callback<TaskResponse>() {
-                @Override
-                public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
-                    taskList.clear();
-                    taskList = response.body().getResults();
-                    recyclerView.setAdapter(new MyAdapter(taskList));
-                    progressDialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<TaskResponse> call, Throwable t) {
-
-                }
-            });
-        }
+    public void loading() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("로딩중입니다...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
-
 }

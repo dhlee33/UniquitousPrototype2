@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:text="전체"
                 style="@style/RadioButton"
-                android:onClick="category_get"
                 android:checked="true"
                 android:layout_weight="1"/>
 
@@ -36,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="배달"
-                android:onClick="category_get"
                 android:layout_weight="1"
                 style="@style/RadioButton" />
             <RadioButton
@@ -44,14 +42,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="숙제"
-                android:onClick="category_get"
                 android:layout_weight="1"
                 style="@style/RadioButton" />
             <RadioButton
                 android:id="@+id/categ4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="category_get"
                 android:text="심부름"
                 android:layout_weight="1"
                 style="@style/RadioButton" />
@@ -60,7 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="기타"
-                android:onClick="category_get"
                 style="@style/RadioButton" />
         </info.hoang8f.android.segmented.SegmentedGroup>
 

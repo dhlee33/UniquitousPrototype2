@@ -12,8 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/cost_text"
         android:layout_alignStart="@+id/cost_text"
-        android:layout_marginTop="15dp"
-        android:onClick="cencle"/>
+        android:onClick="cancle"/>
 
     <TextView
         android:layout_width="150dp"

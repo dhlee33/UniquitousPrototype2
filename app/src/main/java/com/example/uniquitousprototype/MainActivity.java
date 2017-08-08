@@ -11,15 +11,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -184,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
                 create(null,null,-1,-1,-1,0);
                 return true;
             case R.id.action_websearch:
+                Intent profilePageIntent = new Intent(this, Profile.class);
+                startActivity(profilePageIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -229,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
             return;
         }
+
         Intent createTaskIntent = new Intent(this, CreateTaskIntent.class);
         createTaskIntent.putExtra("content",content);
         createTaskIntent.putExtra("category",category);
@@ -238,5 +246,95 @@ public class MainActivity extends AppCompatActivity {
         createTaskIntent.putExtra("id",id);
         startActivity(createTaskIntent);
     }
+    public void update(final View v) {
+        if (!apiApplication.isLogedIn()) {
+            final Intent loginPageIntent = new Intent(this, LoginPage.class);
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.not_login);
+            dialog.setTitle("에러");
+            dialog.findViewById(R.id.cancel).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            dialog.findViewById(R.id.accept_to_login_button).setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(loginPageIntent);
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            dialog.show();
+            return;
+        }
 
+        final RelativeLayout relativeLayout = (RelativeLayout) v.getParent().getParent().getParent();
+        TextView t = (TextView)relativeLayout.findViewById(R.id.recycler_view_id);
+        final int id = Integer.parseInt(t.getText().toString());
+        final CharSequence[] items = {"수정", "삭제", "취소"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("작업을 선택하세요")
+                .setItems(items, new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int index){
+                        switch (index)
+                        {
+                            case 0:
+                                TextView tcontent = (TextView)relativeLayout.findViewById(R.id.recycler_view_content);
+                                TextView tcategory = (TextView)relativeLayout.findViewById(R.id.recycler_view_category);
+                                TextView tcost = (TextView)relativeLayout.findViewById(R.id.recycler_view_cost);
+                                TextView treward = (TextView)relativeLayout.findViewById(R.id.recycler_view_reward);
+                                String content = tcontent.getText().toString();
+                                String category = tcategory.getText().toString();
+                                int cost = Integer.parseInt(tcost.getText().toString());
+                                int reward = Integer.parseInt(treward.getText().toString());
+                                create(content,category,cost,reward,id,1);
+                                break;
+
+                            case 1:
+                                if (!apiApplication.isLogedIn()) {
+                                    return;
+                                }
+                                String token = "Token ";
+                                token += apiApplication.getLoginUser().getToken();
+                                Call<Void> call = apiService.deleteTask(token,id);
+                                call.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+                                break;
+
+                            case 2:
+                                break;
+                        }
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    public void startNegotiation(View v) {
+        CardView cardView = (CardView) v.getParent().getParent().getParent().getParent();
+        TextView costText = cardView.findViewById(R.id.recycler_view_cost);
+        TextView rewardText = cardView.findViewById(R.id.recycler_view_reward);
+        String costString = costText.getText().toString();
+        String rewardString = rewardText.getText().toString();
+        int costInt = Integer.parseInt(costString);
+        int rewardInt = Integer.parseInt(rewardString);
+
+        Intent startNegotiationIntent = new Intent(this, StartNegotiationIntent.class);
+        startNegotiationIntent.putExtra("costInt", costInt);
+        startNegotiationIntent.putExtra("rewardInt", rewardInt);
+        startActivity(startNegotiationIntent);
+        startActivity(startNegotiationIntent);
+    }
 }

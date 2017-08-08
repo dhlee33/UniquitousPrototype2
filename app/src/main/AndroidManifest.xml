@@ -28,7 +28,7 @@
         </activity>
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight"
-            android:label="탐색">
+            android:label="HELPME                                                                                                                                                                                                                                                 ">
         </activity>
 
         <activity android:name=".CreateTaskIntent"
@@ -42,6 +42,8 @@
         <activity android:name=".StartNegotiationIntent"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label="협상을 진행하시겠습니까?"/>
+        <activity android:name=".Profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 

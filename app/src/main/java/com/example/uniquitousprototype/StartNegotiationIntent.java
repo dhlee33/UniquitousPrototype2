@@ -28,7 +28,7 @@ public class StartNegotiationIntent extends AppCompatActivity {
         rewardView.setText(String.valueOf(reward));
         sumView.setText(String.valueOf(cost + reward));
     }
-    public void cencle(View v){
+    public void cancle(View v){
         finish();
     }
 }

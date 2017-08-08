@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:textColor="@drawable/tab_color_selector"
                 android:background="@drawable/tab_bg_selector"
-                android:text="버튼2" />
+                android:text="협상" />
 
             <TextView
                 android:id="@+id/tab_third"
@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:textColor="@drawable/tab_color_selector"
                 android:background="@drawable/tab_bg_selector"
-                android:text="버튼3" />
+                android:text="진행중" />
 
         </LinearLayout>
 

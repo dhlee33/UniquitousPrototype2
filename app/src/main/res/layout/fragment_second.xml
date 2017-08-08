@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:text="내가 쓴 글"
             style="@style/RadioButton"
-            android:onClick="category_get"
             android:checked="true"
             android:layout_weight="1"/>
 
@@ -30,12 +29,19 @@
             android:id="@+id/categ2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="협상중"
-            android:onClick="category_get"
+            android:text="지원한 글"
             android:layout_weight="1"
             style="@style/RadioButton" />
 
     </info.hoang8f.android.segmented.SegmentedGroup>
-    </LinearLayout>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myTaskRecycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/textlines"
+            android:padding="10dp">
+
+        </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
