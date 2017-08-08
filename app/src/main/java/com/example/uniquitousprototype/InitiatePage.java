@@ -13,6 +13,8 @@ import android.widget.Button;
 
 public class InitiatePage extends AppCompatActivity {
     private ApiApplication apiApplication;
+    private static final int LOGINPAGE_CONSTANT = 1001;
+    private static final int SIGNUPPAGE_CONSTANT = 1002;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +30,29 @@ public class InitiatePage extends AppCompatActivity {
     }
 
     public void to_login_page(View v) {
-        Intent loginPageIntent = new Intent(this, LoginPage.class);
-        startActivity(loginPageIntent);
+        startActivityForResult(new Intent(this, LoginPage.class), LOGINPAGE_CONSTANT);
     }
 
     public void to_signup_page(View v) {
-        Intent signupIntent = new Intent(this, SignupPage.class);
-        startActivity(signupIntent);
+        startActivityForResult(new Intent(this, SignupPage.class), SIGNUPPAGE_CONSTANT);
     }
 
     public void to_lookup_page(View v) {
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case LOGINPAGE_CONSTANT:
+                finish();
+                break;
+
+            case SIGNUPPAGE_CONSTANT:
+                finish();
+                break;
+        }
+    }
+
 }

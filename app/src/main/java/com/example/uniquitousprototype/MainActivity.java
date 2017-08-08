@@ -1,6 +1,9 @@
 package com.example.uniquitousprototype;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,14 +12,22 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -217,8 +228,8 @@ public class MainActivity extends AppCompatActivity {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
             final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.not_login);
-            dialog.setTitle("에러");
             dialog.findViewById(R.id.cancel).setOnClickListener(
                     new View.OnClickListener() {
                         @Override
@@ -249,12 +260,5 @@ public class MainActivity extends AppCompatActivity {
         createTaskIntent.putExtra("id",id);
         startActivity(createTaskIntent);
     }
-
-
-
-
-
-
-
 
 }

@@ -20,6 +20,7 @@ public class LoginPage extends AppCompatActivity {
     EditText idEditText, passwordEditText;
     private ApiApplication apiApplication;
     private ApiService apiService;
+    private static final int FINISH = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class LoginPage extends AppCompatActivity {
                         public void onClick(View view) {
                             loginSuccessDialog.dismiss();
                             startActivity(mainIntent);
+                            setResult(FINISH);
                             finish();
                         }
                     }
