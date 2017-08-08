@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/menu_profile_image"
+        android:src="@drawable/action_create"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/menu_profile_name"
+        android:text="가나다"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/menu_profile_image"
+        android:layout_alignEnd="@+id/menu_profile_image"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_profile_ratingbar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/menu_profile_times"
+        android:text="(거래횟수 7회)"
+        android:layout_below="@+id/menu_profile_ratingbar"
+        android:layout_alignLeft="@+id/menu_profile_ratingbar"
+        android:layout_alignStart="@+id/menu_profile_ratingbar"
+        android:layout_marginLeft="82dp"
+        android:layout_marginStart="82dp" />
+
+</RelativeLayout>
