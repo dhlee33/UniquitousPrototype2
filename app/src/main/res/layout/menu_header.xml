@@ -14,7 +14,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/menu_profile_name"
         android:text="가나다"
         android:layout_alignParentBottom="true"
@@ -33,7 +33,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:id="@+id/menu_profile_times"
         android:text="(거래횟수 7회)"
         android:layout_below="@+id/menu_profile_ratingbar"

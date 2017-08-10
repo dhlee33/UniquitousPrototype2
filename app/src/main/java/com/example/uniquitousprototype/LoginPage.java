@@ -44,11 +44,7 @@ public class LoginPage extends AppCompatActivity {
 
         String id = idEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        if(checkBox.isChecked()){
-            autologin = true;
-        }
-        else
-            autologin = false;
+        autologin = checkBox.isChecked();
         Call<LoginUser> loginUserCall = apiService.login(new User(id, password));
         loginUserCall.enqueue(new Callback<LoginUser>() {
             @Override
@@ -63,12 +59,13 @@ public class LoginPage extends AppCompatActivity {
             }
         });
         editor.putBoolean("autologin",autologin);
+        editor.commit();
     }
 
     private void isLoginSuccess() {
         if (apiApplication.isLogedIn()) {
             final Intent mainIntent = new Intent(this, MainActivity.class);
-            final Dialog loginSuccessDialog = new Dialog(this);
+            /*final Dialog loginSuccessDialog = new Dialog(this);
             loginSuccessDialog.setContentView(R.layout.login_success);
             loginSuccessDialog.setTitle("로그인 성공");
             loginSuccessDialog.findViewById(R.id.success_login_button).setOnClickListener(
@@ -81,8 +78,10 @@ public class LoginPage extends AppCompatActivity {
                         }
                     }
             );
-            loginSuccessDialog.show();
-        } else {
+            loginSuccessDialog.show();*/
+            startActivity(mainIntent);
+        }
+        else {
             final Dialog loginFailDialog = new Dialog(this);
             loginFailDialog.setContentView(R.layout.login_fail);
             loginFailDialog.setTitle("로그인 실패");

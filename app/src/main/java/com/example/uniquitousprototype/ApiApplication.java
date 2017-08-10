@@ -66,6 +66,11 @@ public class ApiApplication extends Application {
     }
     public boolean getauto()
     {
+        if(auto) {
+            LoginUser loginUser = new LoginUser();
+            setLoginUser(loginUser);
+            setToken(login.getString("token",null));
+        }
         return auto;
     }
 

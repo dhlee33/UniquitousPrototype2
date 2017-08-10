@@ -22,10 +22,7 @@ public class InitiatePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initiate_page);
         apiApplication = (ApiApplication) getApplicationContext();
-        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
-
         if (apiApplication.getauto()) {
-            apiApplication.setToken(login.getString("token",null));
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
             finish();
