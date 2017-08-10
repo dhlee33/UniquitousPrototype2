@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager menuLayoutManager;
     private List<MainMenuItem> mainMenuItems;
     SharedPreferences.Editor editor;
-
+    SharedPreferences login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         tab_third.setOnClickListener(movePageListener);
         tab_third.setTag(2);
         tab_first.setSelected(true);
-        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+        login = getSharedPreferences("login", MODE_PRIVATE);
         editor = login.edit();
         if(apiApplication.isLogedIn()) {
             editor.putString("token", apiApplication.getLoginUser().getToken());
@@ -164,6 +164,24 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public void menuClick(View v)
+    {
+        TextView textView = (TextView)v.findViewById(R.id.menu_text);
+        String text = textView.getText().toString();
+        switch (text){
+            case "프로필" :
+                Intent profilePageIntent = new Intent(this, Profile.class);
+                startActivity(profilePageIntent);
+                break;
+            case "로그아웃" :
+                editor.putBoolean("autologin",false);
+                editor.putString("token",null);
+                editor.commit();
+                Intent initial = new Intent(this,InitiatePage.class);
+                startActivity(initial);
+                break;
+        }
+    }
     private class pagerAdapter extends FragmentStatePagerAdapter
     {
         public pagerAdapter(android.support.v4.app.FragmentManager fm)
@@ -215,8 +233,6 @@ public class MainActivity extends AppCompatActivity {
                 create(null,null,-1,-1,-1,0);
                 return true;
             case R.id.action_websearch:
-                Intent profilePageIntent = new Intent(this, Profile.class);
-                startActivity(profilePageIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -228,11 +244,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_search, menu);
         getMenuInflater().inflate(R.menu.main_create, menu);
         return true;
-    }
-
-    public void createTask(View v)
-    {
-        create(null,null,-1,-1,-1,0);
     }
 
     public void create(String content, String category, int cost, int reward,int id, int type) {
