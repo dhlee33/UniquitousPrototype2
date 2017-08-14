@@ -10,6 +10,10 @@ public class LoginUser {
     @SerializedName("token")
     private String token;
 
+    public LoginUser(String token) {
+        this.token = token;
+    }
+
     public String getToken() {
         return token;
     }

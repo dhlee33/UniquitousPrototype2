@@ -23,15 +23,11 @@ public class LoginPage extends AppCompatActivity {
     private ApiApplication apiApplication;
     private ApiService apiService;
     private static final int FINISH = 1001;
-    private CheckBox checkBox;
-    private boolean autologin;
     SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_page);
-        checkBox =(CheckBox)findViewById(R.id.autologin);
-        checkBox.setChecked(true);
         idEditText = (EditText) findViewById(R.id.input_id);
         passwordEditText = (EditText) findViewById(R.id.input_password);
         apiApplication = (ApiApplication) getApplicationContext();
@@ -44,12 +40,11 @@ public class LoginPage extends AppCompatActivity {
 
         String id = idEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        autologin = checkBox.isChecked();
         Call<LoginUser> loginUserCall = apiService.login(new User(id, password));
         loginUserCall.enqueue(new Callback<LoginUser>() {
             @Override
             public void onResponse(Call<LoginUser> call, retrofit2.Response<LoginUser> response) {
-                apiApplication.setLoginUser(response.body());
+                apiApplication.login(response.body());
                 isLoginSuccess();
             }
 
@@ -58,14 +53,12 @@ public class LoginPage extends AppCompatActivity {
                 return;
             }
         });
-        editor.putBoolean("autologin",autologin);
-        editor.commit();
     }
 
     private void isLoginSuccess() {
         if (apiApplication.isLogedIn()) {
             final Intent mainIntent = new Intent(this, MainActivity.class);
-            /*final Dialog loginSuccessDialog = new Dialog(this);
+            final Dialog loginSuccessDialog = new Dialog(this);
             loginSuccessDialog.setContentView(R.layout.login_success);
             loginSuccessDialog.setTitle("로그인 성공");
             loginSuccessDialog.findViewById(R.id.success_login_button).setOnClickListener(
@@ -78,10 +71,8 @@ public class LoginPage extends AppCompatActivity {
                         }
                     }
             );
-            loginSuccessDialog.show();*/
-            startActivity(mainIntent);
-        }
-        else {
+            loginSuccessDialog.show();
+        } else {
             final Dialog loginFailDialog = new Dialog(this);
             loginFailDialog.setContentView(R.layout.login_fail);
             loginFailDialog.setTitle("로그인 실패");

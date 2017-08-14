@@ -91,6 +91,7 @@ public class FirstFragment extends Fragment
         });
         return layout;
     }
+
     Button.OnClickListener mClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             int categoryIndex = categoryGroup.getCheckedRadioButtonId();

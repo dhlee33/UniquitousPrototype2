@@ -27,7 +27,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiApplication extends Application {
     public static final String BASE_URL = "http://ec2-13-124-51-140.ap-northeast-2.compute.amazonaws.com:8000/";
     private ApiService apiService;
-    private LoginUser loginUser;
     private boolean auto;
     private User nowUser;
     SharedPreferences login;
@@ -36,7 +35,7 @@ public class ApiApplication extends Application {
     public void onCreate() {
         super.onCreate();
         login = getSharedPreferences("login", MODE_PRIVATE);
-        auto = login.getBoolean("autologin",false);
+        auto = login.getBoolean("autologin", false);
     }
 
     public ApiService getApiService() {
@@ -64,32 +63,35 @@ public class ApiApplication extends Application {
         }
         return apiService;
     }
-    public boolean getauto()
-    {
-        if(auto) {
-            LoginUser loginUser = new LoginUser();
-            setLoginUser(loginUser);
-            setToken(login.getString("token",null));
-        }
-        return auto;
-    }
-
-    public void setLoginUser(LoginUser loginUser) {
-        this.loginUser = loginUser;
-    }
-    public void setToken(String token)
-    {
-        this.loginUser.setToken(token);
-    }
-    public LoginUser getLoginUser() {
-        return loginUser;
-    }
 
     public boolean isLogedIn() {
-        return loginUser!=null;
+        return login.getBoolean("autologin", false);
     }
 
     public void logout() {
-        loginUser = null;
+        SharedPreferences.Editor editor = login.edit();
+        editor.remove("token");
+        editor.putBoolean("autologin", false);
+        editor.commit();
+    }
+
+    public void login(LoginUser loginUser) {
+        if(loginUser == null) {
+            return;
+        } else {
+            String token = loginUser.getToken();
+            SharedPreferences.Editor editor = login.edit();
+            editor.putString("token", "Token " + token);
+            editor.putBoolean("autologin", true).apply();
+            editor.commit();
+        }
+    }
+
+    public String getToken() {
+        String token = null;
+        if (isLogedIn()) {
+            token = login.getString("token", null);
+        }
+        return token;
     }
 }

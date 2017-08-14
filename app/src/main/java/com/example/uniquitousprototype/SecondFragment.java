@@ -46,8 +46,7 @@ public class SecondFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         apiApplication = (ApiApplication) getActivity().getApplicationContext();
         apiService = apiApplication.getApiService();
 
@@ -63,7 +62,7 @@ public class SecondFragment extends Fragment
             RadioButton radioButton2 = (RadioButton)layout.findViewById(R.id.undertakeTask);
             radioButton1.setOnClickListener(mClickListener);
             loading();
-            Call<TaskResponse> call = apiService.myTask("Token " + apiApplication.getLoginUser().getToken());
+            Call<TaskResponse> call = apiService.myTask(apiApplication.getToken());
             call.enqueue(new Callback<TaskResponse>() {
                 @Override
                 public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
@@ -99,7 +98,7 @@ public class SecondFragment extends Fragment
             String category = "0";
             switch (categ){
                 case "내가 쓴 글":
-                    Call<TaskResponse> call = apiService.myTask("Token " + apiApplication.getLoginUser().getToken());
+                    Call<TaskResponse> call = apiService.myTask(apiApplication.getToken());
                     loading();
                     call.enqueue(new Callback<TaskResponse>() {
                         @Override

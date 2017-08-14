@@ -78,8 +78,7 @@ public class CreateTaskIntent extends AppCompatActivity{
         String category = radioButton.getText().toString();
 
         Task newTask = new Task(content, category, cost, reward);
-        String token = "Token ";
-        token += apiApplication.getLoginUser().getToken();
+        String token = apiApplication.getToken();
         if (type == 0) {
             Call<Task> call = apiService.postNewTask(token, newTask);
             call.enqueue(new Callback<Task>() {

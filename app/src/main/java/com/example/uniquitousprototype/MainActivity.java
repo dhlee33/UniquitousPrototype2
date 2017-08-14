@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView menuRecyclerView;
     private LinearLayoutManager menuLayoutManager;
     private List<MainMenuItem> mainMenuItems;
-    SharedPreferences.Editor editor;
-    SharedPreferences login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +64,7 @@ public class MainActivity extends AppCompatActivity {
         tab_third.setOnClickListener(movePageListener);
         tab_third.setTag(2);
         tab_first.setSelected(true);
-        login = getSharedPreferences("login", MODE_PRIVATE);
-        editor = login.edit();
-        if(apiApplication.isLogedIn()) {
-            editor.putString("token", apiApplication.getLoginUser().getToken());
-            editor.commit();
-        }
+
         menuRecyclerView = (RecyclerView) findViewById(R.id.menu_recycler_view);
         menuRecyclerView.setHasFixedSize(true);
         menuLayoutManager = new LinearLayoutManager(this);
@@ -106,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position)
             {
                 int i = 0;
-                while(i<3)
+                while(i < 3)
                 {
-                    if(position==i)
+                    if(position == i)
                     {
                         ll.findViewWithTag(i).setSelected(true);
                     }
@@ -164,24 +158,24 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void menuClick(View v)
-    {
-        TextView textView = (TextView)v.findViewById(R.id.menu_text);
+    public void menuClick(View v) {
+        TextView textView = v.findViewById(R.id.menu_text);
         String text = textView.getText().toString();
         switch (text){
             case "프로필" :
                 Intent profilePageIntent = new Intent(this, Profile.class);
                 startActivity(profilePageIntent);
                 break;
+
             case "로그아웃" :
-                editor.putBoolean("autologin",false);
-                editor.putString("token",null);
-                editor.commit();
-                Intent initial = new Intent(this,InitiatePage.class);
+                apiApplication.logout();
+                Intent initial = new Intent(this, InitiatePage.class);
                 startActivity(initial);
+                finish();
                 break;
         }
     }
+
     private class pagerAdapter extends FragmentStatePagerAdapter
     {
         public pagerAdapter(android.support.v4.app.FragmentManager fm)
@@ -283,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
         createTaskIntent.putExtra("id",id);
         startActivity(createTaskIntent);
     }
+
     public void update(final View v) {
         if (!apiApplication.isLogedIn()) {
             final Intent loginPageIntent = new Intent(this, LoginPage.class);
@@ -336,9 +331,8 @@ public class MainActivity extends AppCompatActivity {
                                 if (!apiApplication.isLogedIn()) {
                                     return;
                                 }
-                                String token = "Token ";
-                                token += apiApplication.getLoginUser().getToken();
-                                Call<Void> call = apiService.deleteTask(token,id);
+                                String token = apiApplication.getToken();
+                                Call<Void> call = apiService.deleteTask(token, id);
                                 call.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
@@ -359,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     public void startNegotiation(View v) {
         CardView cardView = (CardView) v.getParent().getParent().getParent().getParent();
         TextView costText = cardView.findViewById(R.id.recycler_view_cost);

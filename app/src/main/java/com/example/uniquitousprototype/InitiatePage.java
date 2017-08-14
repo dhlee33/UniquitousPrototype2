@@ -22,7 +22,8 @@ public class InitiatePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initiate_page);
         apiApplication = (ApiApplication) getApplicationContext();
-        if (apiApplication.getauto()) {
+
+        if (apiApplication.isLogedIn()) {
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
             finish();

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by YUNKYUSEOK on 2017-08-08.
  */
 
-class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<MainMenuItem> mainMenuItems;
 
     private static final int TYPE_HEADER = 0;
