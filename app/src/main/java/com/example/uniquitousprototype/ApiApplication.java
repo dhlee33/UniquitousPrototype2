@@ -67,7 +67,7 @@ public class ApiApplication extends Application {
     public boolean isLogedIn() {
         return login.getBoolean("autologin", false);
     }
-
+    public boolean logedIn(){return login.getString("token",null) !=null;}
     public void logout() {
         SharedPreferences.Editor editor = login.edit();
         editor.remove("token");
@@ -93,5 +93,13 @@ public class ApiApplication extends Application {
             token = login.getString("token", null);
         }
         return token;
+    }
+
+    public User getNowUser() {
+        return nowUser;}
+
+    public void setNowUser(User user)
+    {
+        nowUser = user;
     }
 }

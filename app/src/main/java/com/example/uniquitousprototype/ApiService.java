@@ -39,9 +39,12 @@ public interface ApiService {
     @GET("errands/{category}/")
     Call<TaskResponse> categoryGet(@Path("category") String category);
 
-    @GET("user/{id}/")
-    Call<User> getUser(@Path("id") int id);
+    @GET("user/profile/")
+    Call<User> getUser(@Header("Authorization") String token);
 
-    @GET("user/myErrand/")
+    @GET("user/myerrand/")
     Call<TaskResponse> myTask(@Header("Authorization") String token);
+
+    @POST("user/update_introduction/")
+    Call<Void> updateIntroduction(@Header("Authorization") String token, @Body User user);
 }

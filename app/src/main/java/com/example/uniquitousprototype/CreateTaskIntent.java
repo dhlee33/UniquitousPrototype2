@@ -18,11 +18,12 @@ import retrofit2.Response;
  */
 
 public class CreateTaskIntent extends AppCompatActivity{
-    EditText contentEditText, costEditText, rewardEditText;
+    EditText contentEditText, costEditText, rewardEditText, titleEditText;
     RadioGroup categoryGroup;
     private ApiApplication apiApplication;
     private ApiService apiService;
     String content;
+    String title;
     String category;
     int cost;
     int reward;
@@ -32,14 +33,15 @@ public class CreateTaskIntent extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_task_intent_layout);
-
         apiApplication = (ApiApplication) getApplicationContext();
         apiService = apiApplication.getApiService();
         Bundle extras = getIntent().getExtras();
         contentEditText = (EditText)findViewById(R.id.text);
         costEditText = (EditText)findViewById(R.id.cost_edit_text);
         rewardEditText = (EditText)findViewById(R.id.reward_edit_text);
+        titleEditText = (EditText)findViewById(R.id.title);
         categoryGroup = (RadioGroup)findViewById(R.id.radioGroup1);
+        title = extras.getString("title");
         content = extras.getString("content");
         category = extras.getString("category");
         cost = extras.getInt("cost");
@@ -70,6 +72,7 @@ public class CreateTaskIntent extends AppCompatActivity{
     }
 
     public void create(View view){
+        String title = titleEditText.getText().toString();
         String content = contentEditText.getText().toString();
         int cost = Integer.parseInt(costEditText.getText().toString());
         int reward = Integer.parseInt(rewardEditText.getText().toString());
@@ -77,7 +80,7 @@ public class CreateTaskIntent extends AppCompatActivity{
         RadioButton radioButton = (RadioButton)findViewById(categoryIndex);
         String category = radioButton.getText().toString();
 
-        Task newTask = new Task(content, category, cost, reward);
+        Task newTask = new Task(title,content, category, cost, reward);
         String token = apiApplication.getToken();
         if (type == 0) {
             Call<Task> call = apiService.postNewTask(token, newTask);

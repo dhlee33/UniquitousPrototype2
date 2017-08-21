@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Task {
+    @SerializedName("title")
+    private String title;
     @SerializedName("text")
     private String content;
     @SerializedName("category")
@@ -18,11 +20,12 @@ public class Task {
     @SerializedName("id")
     private int id;
 
-    Task(String content, String category, int cost, int reward) {
+    Task(String title,String content, String category, int cost, int reward) {
         this.content = content;
         this.category = category;
         this.cost = cost;
         this.reward = reward;
+        this.title = title;
     }
 
     Task(String content, String category, int cost, int reward, int id) {

@@ -11,14 +11,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/textlines">
+        android:layout_height="wrap_content">
 
         <info.hoang8f.android.segmented.SegmentedGroup
             android:id="@+id/segmented2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="2dp"
             android:orientation="horizontal">
 
             <RadioButton
@@ -69,10 +68,7 @@
 android:id="@+id/recycler_view"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:layout_below="@+id/topOfMain"
-android:background="@drawable/textlines"
-android:padding="10dp">
-
+android:layout_below="@+id/topOfMain">
 </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

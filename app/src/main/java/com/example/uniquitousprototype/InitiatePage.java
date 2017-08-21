@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+
 /**
  * Created by YUNKYUSEOK on 2017-07-20.
  */
@@ -16,13 +19,15 @@ public class InitiatePage extends AppCompatActivity {
     private ApiApplication apiApplication;
     private static final int LOGINPAGE_CONSTANT = 1001;
     private static final int SIGNUPPAGE_CONSTANT = 1002;
-
+    private ApiService apiService;
+    private SharedPreferences login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.initiate_page);
         apiApplication = (ApiApplication) getApplicationContext();
-
+        apiService = apiApplication.getApiService();
+        login = getSharedPreferences("login", MODE_PRIVATE);
         if (apiApplication.isLogedIn()) {
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);

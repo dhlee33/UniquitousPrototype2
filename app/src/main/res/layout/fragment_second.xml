@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/textlines"
         android:id="@+id/linearLayout2">
 
     <info.hoang8f.android.segmented.SegmentedGroup
@@ -40,7 +39,6 @@
             android:id="@+id/myTaskRecycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/textlines"
             android:padding="10dp"
             android:layout_below="@+id/linearLayout2">
 

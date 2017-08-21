@@ -117,16 +117,16 @@ public class FirstFragment extends Fragment
                     });
                     break;
                 case "배달":
-                    category = "DELIVERY";
+                    category = "delivery";
                     break;
                 case "숙제":
-                    category = "HOMEWORK";
+                    category = "homework";
                     break;
                 case "심부름":
-                    category = "ERRAND";
+                    category = "errand";
                     break;
                 case "기타":
-                    category = "ETC";
+                    category = "etc";
                     break;
             }
 

@@ -21,6 +21,9 @@ public class User {
     private String name;
     @SerializedName("email")
     private String email;
+    @SerializedName("self_introduction")
+    private String selfIntroduction;
+
 
     User (String userName, String password, String passwordConfirm, String name, String email) {
         this.userName = userName;
@@ -41,5 +44,16 @@ public class User {
 
     public List<String> getTasks() {
         return tasks;
+    }
+
+    public String getName() {return name;}
+
+    public String getEmail() {return email;}
+
+    public String getSelf_introduction(){return selfIntroduction;}
+
+    public void setSelfIntroduction(String introduction)
+    {
+        selfIntroduction = introduction;
     }
 }

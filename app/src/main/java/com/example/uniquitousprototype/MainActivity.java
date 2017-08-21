@@ -22,6 +22,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView menuRecyclerView;
     private LinearLayoutManager menuLayoutManager;
     private List<MainMenuItem> mainMenuItems;
-
+    private String name = "구경중";
+    private String email;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,14 +67,46 @@ public class MainActivity extends AppCompatActivity {
         tab_third.setOnClickListener(movePageListener);
         tab_third.setTag(2);
         tab_first.setSelected(true);
+        SharedPreferences login = getSharedPreferences("login", MODE_PRIVATE);
+        editor = login.edit();
 
-        menuRecyclerView = (RecyclerView) findViewById(R.id.menu_recycler_view);
-        menuRecyclerView.setHasFixedSize(true);
-        menuLayoutManager = new LinearLayoutManager(this);
-        menuRecyclerView.setLayoutManager(menuLayoutManager);
-        menuRecyclerView.addItemDecoration(new ItemDividerDecoration(this));
+        if(apiApplication.logedIn())
+        {
+            Call<User> loginUserCall = apiService.getUser(login.getString("token",null));
+            loginUserCall.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, retrofit2.Response<User> response) {
+                    apiApplication.setNowUser(response.body());
+                    name = apiApplication.getNowUser().getName();
+                    email = apiApplication.getNowUser().getEmail();
+                    menuRecyclerView = (RecyclerView) findViewById(R.id.menu_recycler_view);
+                    menuRecyclerView.setHasFixedSize(true);
+                    menuLayoutManager = new LinearLayoutManager(MainActivity.this);
+                    menuRecyclerView.setLayoutManager(menuLayoutManager);
+                    menuRecyclerView.addItemDecoration(new ItemDividerDecoration(MainActivity.this));
+                    setMenu();
+                    menuRecyclerView.setAdapter(new MenuAdapter(mainMenuItems));
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),"저장실패!",Toast.LENGTH_LONG).show();
+                    name = "fail";
+                    return;
+                }
+            });
+        }
+        else
+        {
+            menuRecyclerView = (RecyclerView) findViewById(R.id.menu_recycler_view);
+            menuRecyclerView.setHasFixedSize(true);
+            menuLayoutManager = new LinearLayoutManager(this);
+            menuRecyclerView.setLayoutManager(menuLayoutManager);
+            menuRecyclerView.addItemDecoration(new ItemDividerDecoration(this));
+            setMenu();
+            menuRecyclerView.setAdapter(new MenuAdapter(mainMenuItems));
+        }
         setMenu();
-        menuRecyclerView.setAdapter(new MenuAdapter(mainMenuItems));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, null, R.string.drawer_open, R.string.drawer_close) {
@@ -124,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setMenu() {
         mainMenuItems = new ArrayList<>();
-        mainMenuItems.add(new MainMenuItem(R.drawable.person_icon, "홍길동", 8, 7));
+        mainMenuItems.add(new MainMenuItem(R.drawable.person_icon, name, 8, 7));
         mainMenuItems.add(new MainMenuItem(R.drawable.person_icon, "프로필"));
         mainMenuItems.add(new MainMenuItem(R.drawable.add_friend_icon, "친구찾기"));
         mainMenuItems.add(new MainMenuItem(R.drawable.friend_list_icon, "친구목록"));
